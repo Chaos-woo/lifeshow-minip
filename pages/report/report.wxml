@@ -1,0 +1,11 @@
+<!--pages/report/report.wxml-->
+<navBar title="短视频反馈" color="#FFFFFF" background="#86E3CE" back="{{true}}" bindback="back"></navBar>
+<view class="form">
+    <form bindsubmit="uploadReporter">
+        <van-cell-group>
+            <van-field value="{{videoTitle}}" label="举报视频" cursor-spacing="10" maxlength="30" adjust-position readonly name="title" />
+            <van-field value="" label="描述" cursor-spacing="20" adjust-position type="textarea" maxlength="60" clickable autosize=" { maxHeight: 100, minHeight: 50 }" name="description" />
+        </van-cell-group>
+        <button class="submit-btn" type="primary" form-type='submit'>反馈</button>
+    </form>
+</view>

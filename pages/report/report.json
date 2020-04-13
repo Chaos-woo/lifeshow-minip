@@ -1,0 +1,14 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navBar": "/components/navBar/navBar",
+    "van-field": "/@vant/weapp/field/index",
+    "van-cell-group": "/@vant/weapp/cell-group/index"
+  },
+  "disableScroll": true
+}

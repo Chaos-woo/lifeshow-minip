@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/comment/comment",
+    "pages/camera/camera",
+    "pages/search/search",
+    "pages/active/active",
+    "pages/user/user",
+    "pages/music/music",
+    "pages/my/my",
+    "pages/video-detail/video-detail",
+    "pages/message-detail/message-detail",
+    "pages/fans/fans",
+    "pages/video-set/video-set",
+    "pages/message/message",
+    "pages/follow/follow",
+    "pages/report/report"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "life show",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#60EFDB",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon/home.png",
+        "selectedIconPath": "/images/icon/home1.png"
+      },
+      {
+        "pagePath": "pages/active/active",
+        "text": "热门",
+        "iconPath": "images/icon/active.png",
+        "selectedIconPath": "/images/icon/active1.png"
+      },
+      {
+        "pagePath": "pages/music/music",
+        "text": "o[ | __ | ]o",
+        "iconPath": "images/icon/plus.png",
+        "selectedIconPath": "/images/icon/plus.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "images/icon/message.png",
+        "selectedIconPath": "/images/icon/message1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/icon/my.png",
+        "selectedIconPath": "/images/icon/my1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

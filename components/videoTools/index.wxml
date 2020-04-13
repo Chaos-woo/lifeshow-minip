@@ -1,0 +1,21 @@
+<!-- components/videoTools/index.wxml -->
+<view class="wrap">
+    <view class="user-btn" data-id="{{videoInfo.authorId}}" bindtap="onUserInfoClick">
+        <image class="avatar common" src="{{videoInfo.authorAvatar}}"></image>
+        <image class="follow" src="/images/icon/follow.png"></image>
+    </view>
+    <view class="liked-btn" bindtap="onLiked">
+        <image wx:if="{{videoInfo.isLiked}}" class="like common" src="{{liked}}"></image>
+        <image wx:else class="like common" src="{{like}}"></image>
+        <view class="liked-count count-common">{{videoInfo.likedCount}}</view>
+    </view>
+    <view class="comment-btn" bindtap="onComment">
+        <image class="comment common" src="/images/icon/comment.png"></image>
+        <view class="comment-count count-common">{{videoInfo.commentCount}}</view>
+    </view>
+    <view class="share-btn">
+        <image class="share common" src="/images/icon/share.png"></image>
+        <view class="share-count count-common">{{videoInfo.sharedCount}}</view>
+        <button open-type='share'></button>
+    </view>
+</view>

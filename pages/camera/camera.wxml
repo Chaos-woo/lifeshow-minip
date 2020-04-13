@@ -1,0 +1,41 @@
+<!-- pages/camera/camera.wxml -->
+<navBar wx:if="{{!videoSrc}}" id="navbar" title="拍摄" color="#FFFFFF" background="#86E3CE" back="{{true}}" bindback="back"></navBar>
+<camera wx:if="{{!videoSrc}}" class="camera" device-position="{{devicePosition?'back':'front'}}" flash="off" binderror="error" style="width: 750rpx; height: {{cameraHeight}}px;">
+    <cover-view class="tips">{{tips}}</cover-view>
+    <cover-view class="shooting" bindtap="shootVideo">
+        <cover-image src="{{shootImgSrc}}"></cover-image>
+    </cover-view>
+    <cover-view class="switch-device" wx:if="{{canSwitch}}" bindtap="switchDevicePosition">
+        <cover-image src="/images/icon/switch.png"></cover-image>
+    </cover-view>
+    <cover-view wx:if="{{!videoSrc}}" class="timer">还可以拍摄{{ timeData.seconds }}秒</cover-view>
+</camera>
+<video wx:if="{{videoSrc && !upload}}" src="{{videoSrc}}" style="width: 750rpx; height: {{windowHeight}}px;" controls>
+    <cover-view class="tool" bindtap="showTools">
+        <cover-image src="/images/icon/tool.png"></cover-image>
+    </cover-view>
+    <cover-view class="tool-item" wx:if="{{toolShow}}">
+        <cover-view class="item-upload item" bindtap="confirmUpload">上传</cover-view>
+        <cover-view class="item-return item" bindtap="onReturn">重拍</cover-view>
+    </cover-view>
+</video>
+<navBar wx:if="{{videoSrc && upload}}" title="填写短视频信息" color="#FFFFFF" background="#86E3CE" back="{{true}}" bindback="back"></navBar>
+<view class="form" wx:if="{{videoSrc && upload}}">
+    <form bindsubmit="uploadFile">
+        <van-cell-group>
+            <van-field value="" label="标题" cursor-spacing="10" maxlength="20" adjust-position clickable name="title" />
+            <van-field value="{{pickerValue}}" label="热门活动" name="activ" readonly clickable bindtap="onPicker" />
+            <van-field value="" label="描述" cursor-spacing="10" adjust-position type="textarea" maxlength="40" clickable autosize=" { maxHeight: 100, minHeight: 50 }" name="description" />
+            <van-field value="" label="封面图" name="none" border="{{false}}" readonly />
+        </van-cell-group>
+        <van-uploader file-list="{{ coverList }}" bind:after-read="afterRead" bind:delete="onDeleteCover" max-count="1" upload-text="点击上传封面图（默认使用短视频封面图）" accept="image" max-size="4194304" class="upload-img" name="cover" />
+        <button class="submit-btn" type="primary" form-type='submit'>上传</button>
+    </form>
+</view>
+<van-popup show="{{ pickerShow }}" round position="bottom" custom-style="height: 40%;" bind:close="onPickerClose">
+    <van-picker show-toolbar title="选择热门活动" visible-item-count="7" columns="{{ activPicker }}" bind:confirm="onConfirm" bind:cancel="onCancel" />
+</van-popup>
+<!-- 计时器 -->
+<view hidden="{{true}}">
+    <van-count-down time="{{ remainTime }}" use-slot="{{true}}" class="timer-control" auto-start="{{ false }}" bind:finish="timerFinished" bind:change="onChange" format="mm:ss"></van-count-down>
+</view>

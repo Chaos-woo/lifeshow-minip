@@ -1,0 +1,51 @@
+<!-- components/videoItemNavigator/index.wxml -->
+<view wx:if="{{type=='video-v'}}">
+  <navigator open-type="{{openType}}" url="{{navigateUrl}}" class="video-v">
+    <view class="video-v-img">
+      <image src="{{videoDetail.cover}}" mode="aspectFill"></image>
+      <view class="video-liked">
+        <view class="liked-count">
+          <i class="iconfont icon-collection"></i>
+          <i class="count">{{videoDetail.likedCount}}</i>
+        </view>
+      </view>
+    </view>
+    <view class="video-v-title">{{videoDetail.title}}</view>
+  </navigator>
+</view>
+<!--  -->
+<view wx:if="{{type=='video-h'}}">
+  <navigator open-type="{{openType}}" url="{{navigateUrl}}" class="video-h">
+    <view class="video-h-img">
+      <image src="{{videoDetail.cover}}" mode="aspectFill"></image>
+      <view class="seconds">00:15</view>
+    </view>
+    <view class="video-h-info">
+      <view class="video-h-title">{{videoDetail.title}}</view>
+      <view class="video-h-user">{{videoDetail.createdBy}}</view>
+      <view class="video-h-stat">
+        <view class="liked">喜欢:{{videoDetail.likedCount}}</view>
+        <text decode="{{true}}" class="depart">&nbsp;|&nbsp;</text>
+        <view class="danmaku">弹幕:{{videoDetail.danmakuCount}}</view>
+        <text decode="{{true}}" class="depart">&nbsp;|&nbsp;</text>
+        <view class="comment">留言:{{videoDetail.commentCount}}</view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<!--  -->
+<view wx:if="{{type=='user'}}">
+  <navigator open-type="{{openType}}" url="{{navigateUrl}}" class="user">
+    <view class="user-img">
+      <image src="{{userDetail.avatarUrl}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-info">
+      <view class="nickName">{{userDetail.nickName}}</view>
+      <view class="user-stat">
+        <view class="fans">粉丝：{{userDetail.fans}}</view>
+        <text decode="{{true}}" class="depart">&nbsp;|&nbsp;</text>
+        <view class="works">作品：{{userDetail.works}}</view>
+      </view>
+    </view>
+  </navigator>
+</view>

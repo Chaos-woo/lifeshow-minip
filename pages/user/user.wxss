@@ -1,0 +1,121 @@
+/* pages/my/my.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.user-info-container {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.avatar-left {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.userinfo {
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+
+.userinfo text {
+  font-size: 16px;
+  margin-bottom: 20rpx;
+}
+
+.userinfo .detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.detail view {
+  margin-right: 10rpx;
+}
+
+.tools {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tools .buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tools .buttons van-button {
+  margin-right: 15rpx;
+}
+
+.follow-icon{
+  margin-right: 15rpx;
+}
+
+.user-stat {
+  width: 100%;
+  height: 7%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 25rpx;
+}
+
+.user-stat view {
+  margin-right: 15rpx;
+  font-size: 12px;
+  color: gray;
+}
+
+.user-stat view text {
+  font-size: 16px;
+  color: #f16d7e;
+}
+
+.video-tab {
+  width: 100%;
+  height: 63%;
+}
+
+.video-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 5rpx;
+  justify-content: flex-start;
+}
+
+.video-item {
+  width: 32%;
+  height: 125px;
+  margin-bottom: 10rpx;
+  margin-left: 8rpx;
+}

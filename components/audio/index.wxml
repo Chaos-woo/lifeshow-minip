@@ -1,0 +1,22 @@
+<!--components/audio/index.wxml-->
+  <view class='player'>
+    <view class='audioControls'>
+      <view class='flex'>
+        <view class='bottom'>
+          <!-- 按钮 -->
+          <view wx:if="{{isPlayAudio}}" catchtap='_pauseAudio'>
+            <i class="iconfont icon-Pause"></i>
+          </view>
+          <view wx:else catchtap='_playAudio'>
+            <i class="iconfont icon-play"></i>
+          </view>
+        </view>
+        <view class='slider'>
+          <slider bindchange='_sliderChange' disabled="{{disabled}}" activeColor='red' block-size="12" value='{{audioTime}}' />
+        </view>
+        <view class='time'>
+          {{showTime1}}/{{showTime2}}
+        </view>
+      </view>
+    </view>
+  </view>

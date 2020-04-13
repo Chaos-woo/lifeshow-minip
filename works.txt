@@ -1,0 +1,145 @@
+
+
+app.js 检查用户身份，检查是否有登录口令
+
+index.js 用户登录wx.login，设置登录口令password，用户信息更新wx.getuserinfo
+
+login.js 用户信息授权wx.setting（同时绑定函数进行主页的跳转），用户身份修改identity
+
+
+                // 获得用户信息
+                getUserInfo({
+                  withCredentials: "true",
+                  lang: "zh_CN",
+                  timeout: 10000
+                })
+                  .then(res => {
+                    app.globalData.userInfo = res.userInfo;
+                    console.log(res.userInfo);
+
+                    // 比对用户信息是否发生改变
+                    // =========================
+                    getUserInfoCache({ key: "userinfo" })
+                      .then(res => {
+                        let userInfoCache = res.data;
+                        let isEqually = async function(
+                          userInfoCache,
+                          userInfo
+                        ) {
+                          const isEqually = await check(
+                            userInfoCache,
+                            app.globalData.userInfo
+                          );
+                          return isEqually;
+                        };
+                        isEqually.then(res => {
+                          console.log(res);
+                        });
+                        // if (!isEqually) {
+                        //   setUserInfoCacheAndUpload();
+                        // }
+                      })
+                      .catch(err => {
+                        this.setUserInfoCacheAndUpload();
+                      });
+
+                    // =========================
+                  })
+                  .catch(res => {
+                    console.log("000-end");
+                    
+                    wx.reLaunch({
+                      url: "/pages/login/login"
+                    });
+                  });
+
+
+
+
+
+
+
+    checkSession()
+      .then(() => {})
+      .catch(() => {
+        // session无效，需要重新登录
+        login()
+          .then(res => {
+            let code = res.code;
+            pCode2Session({
+              url: "/u/code2session",
+              data: {
+                code: code
+              }
+            }).then(res => {
+              // 获得登录口令
+              if (res.success) {
+                let data_map = res.data;
+                app.globalData.openid = data_map.openid;
+                // 设置本地登录口令
+                setUserPasswordCache({
+                  key: "auth",
+                  data: data_map.password
+                });
+                wx.getSetting({
+                  success: res => {
+                    if (res.authSetting["scope.userInfo"]) {
+                      // 获得用户信息
+                      getUserInfo({
+                        withCredentials: "true",
+                        lang: "zh_CN",
+                        timeout: 10000
+                      }).then(res => {
+                        app.globalData.userInfo = res.userInfo;
+                        console.log(res.userInfo);
+
+                        // 比对用户信息是否发生改变
+                        // =========================
+                        getUserInfoCache({ key: "userinfo" })
+                          .then(res => {
+                            let userInfoCache = res.data;
+                            let isEqually = async function(
+                              userInfoCache,
+                              userInfo
+                            ) {
+                              const isEqually = await check(
+                                userInfoCache,
+                                app.globalData.userInfo
+                              );
+                              return isEqually;
+                            };
+                            isEqually.then(res => {
+                              console.log(res);
+                            });
+                            // if (!isEqually) {
+                            //   setUserInfoCacheAndUpload();
+                            // }
+                          })
+                          .catch(err => {
+                            this.setUserInfoCacheAndUpload();
+                          });
+
+                        // =========================
+                      });
+                    } else {
+                      wx.reLaunch({
+                        url: "/pages/login/login"
+                      });
+                    }
+                  }
+                });
+              }
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
+
+
+
+
+
+
+
+

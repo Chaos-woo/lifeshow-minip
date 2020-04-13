@@ -1,0 +1,21 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navBar": "/components/navBar/navBar",
+    "navigatorItem":"/components/navigatorItem/index",
+    "van-image": "/@vant/weapp/image/index",
+    "van-tab": "/@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "/@vant/weapp/button/index",
+    "van-divider": "/@vant/weapp/divider/index",
+    "van-tag": "/@vant/weapp/tag/index",
+    "van-icon": "/@vant/weapp/icon/index",
+    "van-action-sheet": "/@vant/weapp/action-sheet/index"
+  },
+  "disableScroll": true
+}

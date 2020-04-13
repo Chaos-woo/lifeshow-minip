@@ -1,0 +1,63 @@
+/* components/videoTools/index.wxss */
+.wrap {
+  width: 90rpx;
+  height: 520rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.common {
+  width: 90rpx;
+  height: 90rpx;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  border-radius: 45rpx;
+}
+
+.user-btn {
+  position: relative;
+}
+
+.follow {
+  width: 36rpx;
+  height: 36rpx;
+  z-index: 998;
+  position: absolute;
+  bottom: 22rpx;
+  left: 27rpx;
+}
+
+.liked-btn {
+  position: relative;
+}
+
+.count-common {
+  width: 90rpx;
+  color: #fff;
+  font-size: 25rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 0;
+  text-align: center;
+}
+
+.comment-btn {
+  position: relative;
+}
+
+.share-btn {
+  position: relative;
+}
+
+.share-btn button {
+  width: 90rpx;
+  height: 90rpx;
+  opacity: 0;
+  z-index: 999;
+  position: absolute;
+  bottom: 45rpx;
+  left: 0;
+}

@@ -1,0 +1,65 @@
+/* components/audio/index.wxss */
+@font-face {font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_1704620_v3wjrulggl9.eot?t=1584938693149'); /* IE9 */
+    src: url('//at.alicdn.com/t/font_1704620_v3wjrulggl9.eot?t=1584938693149#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPMAAsAAAAAB+QAAAN/AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDTIMkATYCJAMMCwgABCAFhG0HNhvqBsgekiRIQAEFEigAwIjj4ft789z/376txVILxlux0E4oGKqAASpoAQlQxrvA/nye9dJ0AGdWGNHFT9qp03TMo3SSTgu5WOK0e5s9DRL3D/jicNr0AOdblssck6MuiuOAAhtr0uaAFkhA3nI49io8upYTaJh3BnaSlFEAhhLSLhB3QooDhimlVJMZakIuGZog3kBPrRhkPQXw6n8//sEvDEGhUgLpenWbyIeYr7A/1/COgw4VLgJY4+khjqLELpCIm1LjNTwM7sI1dCG7PjFLQjGW5+AAn2mI80r/eAWRgaS3wCaWF06KZVMIvq8xsMj5m8k9wi/AB2BHuVkOo6PWOEYef8zI1LTZuGN1eL1zbWilRqst0n4o1n0r1LwrGF1YmnbQvS/Sfi1Qvy3UfCueWJyatH2oLhtac8Y7Z5aH7QrHpjpysxWMlkPxlMLMtEXj46OjdhpQqwsG6aHTFQ9rMseWJ6btn2uNDZxGU2gqG1qZ6fUSvHN8aBRYz2PDE0Vxsj/kLJpbudKns1icw/5dODVxbJK268sdzDh1TCGRyI+fTB+q7WstLk/pCXFQVTaUuFqLBQKRtWtpY6XKPrgn+ZxKJ1iKoN1HzG3X2KZm9yqcl/70Lt5zvudtyfJQXxC+qIeD3ISK5fzgnf/Vxz0y8vH1nz/XcUxzVfh6PE1iy6lUvuU8xswPeWVcY+/usq8BDegOnVuA+mFm5WLl7Oni+eXyKeMrNleMoVRtpNWGGoCZ8h1e4svGqTjmV/5GI03VVFtE7BiasAE+56vvgWMmQXu12o2agh/HalmQDA5RlUlj2kzLVbr0cwIFGobWDFsHPvcXj1unE2rGMRSq5qBUs4pM2F2oaNqDrGYfGnYkj24aouEiGQHbehGEnm0odLxDqecZMmE/QcXEX8h6gUPDNGymbFoPoXE8jTgM4hPcRkLIk0lJpmGMg8w8RKnEHDrJ8fFFiFYKPYSvl082koykiB6jh7KO8mMYkiBpmYRIQqshsVhGyGlZLeIxXgKGkYd5e5NlZ/LiySRg7BgN4WAgfASuRgQhHhkp0i3PMM59Pg9CURHjoGvy6tRFEJqSsHqCLy8+LZDJQmmrvGs5RakOxQ+DQSKQaDIShCSkR8Q0KEOQlzeqhfAwvAh6+OXCeEMxsq3Qa36x5PlWQAOZrwwWhmNsSE9iTqNeDkelRAAA') format('woff2'),
+    url('//at.alicdn.com/t/font_1704620_v3wjrulggl9.woff?t=1584938693149') format('woff'),
+    url('//at.alicdn.com/t/font_1704620_v3wjrulggl9.ttf?t=1584938693149') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_1704620_v3wjrulggl9.svg?t=1584938693149#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-play:before {
+    content: "\e63a";
+  }
+  
+  .icon-Pause:before {
+    content: "\e7bd";
+  }
+
+
+.flex{
+    display: flex;
+  }
+  .player{
+    width: 650rpx;
+  }
+  .audioControls{
+    width: 100%;
+    height: 80rpx;
+    background: #ffffff;
+    color: white;
+    font-size: 6pt;
+    line-height: 80rpx;
+    text-align: center;
+    border-radius: 0 0 10rpx 10rpx;
+  }
+  .audioControls .bottom{
+    width: 60rpx;
+    height: 100%;
+  }
+  .audioControls .bottom i{
+    color: #000000;
+    font-size: 25px;
+  }
+  .audioControls .slider{
+    width: 520rpx;
+    height: 100%;
+  }
+  .slider slider{
+    width: 95%;
+    margin-left: 4%;
+    margin-right: 0;
+  }
+  .audioControls .time{
+    width: 120rpx;
+    height: 100%;
+    color: #000000;
+  }

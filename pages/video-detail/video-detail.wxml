@@ -1,0 +1,51 @@
+<view class="back-btn" bindtap="back" style="position:absolute;left:30rpx;top:{{statusBarHeight+10}}px">
+    <image class="back-img" src="/images/icon/return.png"></image>
+</view>
+<view class="danmaku" style="position:absolute;left:0;top:{{statusBarHeight+40}}px">
+    <view class='displayGroup'>
+        <view class='dmGroup' wx:for="{{ dmData }}" wx:key="id" style="top:{{ item.top }}%; animation: dmAnimation {{item.time}}s linear {{ index*3 }}s infinite;">
+            <view class='dmItem'>
+                <view class='dm'>
+                    <text class='content'>{{ item.content }}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="tools">
+    <video-tool bind:comment="onComment" bind:toUserInfo="onClickUserAvatar" videoInfo="{{curVideoInfo}}" bind:liked="onLiked"></video-tool>
+</view>
+<video loop="{{true}}" autoplay="{{true}}" enable-play-gesture enable-progress-gesture show-center-play-btn="{{false}}" controls="{{false}}" src="{{curVideoInfo.videoSrc}}" data-id="{{curVideoInfo.videoId}}" object-fit="cover'" bindplay="onPlay" bindpause="onPause" bindended="onEnded" binderror="onError" bindloadedmetadata="onLoadedmetadata"></video>
+<image class="cd" src="/images/icon/cd.png" bindtap="moreOptions"></image>
+<view class="damaku">
+    <view class="damaku-input">
+        <input placeholder="发送弹幕  (゜-゜)つロ 干杯~" type="text" adjust-position cursor-spacing="15px" value="{{danmakuInputValue}}" bindconfirm="confirmSendDanmaku"></input>
+    </view>
+</view>
+<view class="info">
+    <view class="nickname">@{{curVideoInfo.author}}</view>
+    <view class="activ">#{{curVideoInfo.active}}#</view>
+    <view class="description">{{curVideoInfo.description}}</view>
+</view>
+<view class="comment-popup">
+    <van-popup show="{{ commentPopupShow }}" round z-index="999" position="bottom" custom-style="height: 65%;background-color:rgba(0,0,0,0.7);" closeable bind:close="onClose" bindscrolltolower="onCommentScrollToLower">
+        <scroll-view style="height: {{scrollViewHeight}}px;margin-top:40px;" scroll-y="true">
+            <!-- scroll-view里面的内容 -->
+            <view class="container">
+                <commentItem wx:for="{{currentVideoComment.records}}" wx:for-index="index" wx:for-item="item" wx:key="*this" type="mini" commentInfo="{{item}}"></commentItem>
+            </view>
+        </scroll-view>
+        <view class="comment">
+            <view class="comment-input">
+                <input placeholder="写下你的评论~" type="text" adjust-position cursor-spacing="15px" value="{{commentInputValue}}" bindconfirm="confirmSendComment"></input>
+            </view>
+        </view>
+    </van-popup>
+</view>
+<van-popup show="{{moreOptionsShow}}" z-index="999" round bind:close="onClose" custom-style="height:15%;width:50%;background-color:rgba(255,255,255,0.6);">
+    <view class="option-report option" bindtap="onReport">举报</view>
+    <view wx:if="{{curVideoInfo.isCollected}}" class="option-collect option" bindtap="onCollected">
+        已收藏
+    </view>
+    <view wx:else class="option-collect option" bindtap="onCollected">收藏</view>
+</van-popup>

@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": false,
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "video-tool":"/components/videoTools/index",
+    "van-popup": "/@vant/weapp/popup/index",
+    "commentItem":"/components/commentItem/index"
+  }
+}

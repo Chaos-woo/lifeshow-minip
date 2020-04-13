@@ -1,0 +1,20 @@
+/* pages/list/list.wxss */
+page {
+  height: 100%;
+}
+
+.user-item {
+  width: 100%;
+}
+
+.van-swipe-cell-left,
+.van-swipe-cell-right {
+  display: inline-block;
+  width: 65px;
+  height: 90px;
+  font-size: 15px;
+  line-height: 90px;
+  color: #fff;
+  text-align: center;
+  background-color: #ee0a24;
+}

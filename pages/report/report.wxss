@@ -1,0 +1,14 @@
+/* pages/report/report.wxss */
+page {
+    width: 100%;
+    height: 100%;
+  }
+
+  .form{
+      margin-top: 50px;
+  }
+
+  .submit.btn{
+    margin-top: 30px;
+  }
+  

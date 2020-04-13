@@ -1,0 +1,188 @@
+/* components/videoItemNavigator/index.wxss */
+
+@font-face {
+  font-family: "iconfont";
+  src: url("//at.alicdn.com/t/font_1704620_b9rrdssbehh.eot?t=1584757916698"); /* IE9 */
+  src: url("//at.alicdn.com/t/font_1704620_b9rrdssbehh.eot?t=1584757916698#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALkAAsAAAAABqQAAAKXAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBLIEvATYCJAMICwYABCAFhG0HNBvZBREVlAtkPxKMG8cf6FEFgY3LLUWFTqRvgudrLXu/u2fTmQkgqdTKENEBa7IArAiEYZk6BYCS5DZAAMHYrU3Rb1QUckrOg++UzIT16/LpOl+nq1SFrJBcDbic/gookHlAOe1NY00eEzCwNNA9sK0JlVDGDWMXvMDTEMAlTQmpa2jrw2KwJwkgq1csTmMLfgyGpSyCr2GlQfbhYNV2tQzsjb4vvyjNgsLR2BVdC/VzVH0942TobYFtxgKCAAhovQNooAQYkL7GeAcaYWyNGzdk4VilAl/PBAKBDTmqGWF/nV0cAkAKlDyT1JM9arECwCT9flA/6fGgkpI2XbkhF5427FguObQj7voj9+Fj2Hat8HBs/+DaZ8+uO58UXnnmPXly3nazIGauc+eRI3GXb//YHVWZZFta1ud9jVyTsibya9763BtsUmVUZPTb3/s/npS2+flWKWrMOnu2KauwVebnpS1794psbRZiFv8sSw1tpgr7Z7pKnUMAgfGP/y824WV/rWcAeHny9KnIZBjmBHsuh8A/kw5sM4bctiqjSRudCv+kiQpwcYEA7I7ydqoh9gbTgiX2Np1BpGbQWHJIwyqBg4cfPiyVcCnWuN4j2kY0YkjBQJE3gIjwgRLmDrQIX9KwfnDE2eETkYZroOgdPXmtULWMneAI/QuWwVly7aLi0gNON91xXh5xLshhCUGeZOVUjRZ5iTnhPhUiBMTOQAXOQ60deHYrDpLMIr5MU2p6UTI4Eym1GOoINAK9F7AYOBYFvYWqfP4ATW60DndU1YUvEAuWwUEukQ0ga40dVPUolwR3k4IQBBDmGKACw5CmOcA3D1uhgUjME6JeKXW60VBNsr3O/EAxq8M2qpxsjXun9U2KPsAcRQA=")
+      format("woff2"),
+    url("//at.alicdn.com/t/font_1704620_b9rrdssbehh.woff?t=1584757916698")
+      format("woff"),
+    url("//at.alicdn.com/t/font_1704620_b9rrdssbehh.ttf?t=1584757916698")
+      format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url("//at.alicdn.com/t/font_1704620_b9rrdssbehh.svg?t=1584757916698#iconfont")
+      format("svg"); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-collection:before {
+  content: "\e69e";
+}
+
+.video-v-img {
+  position: relative;
+}
+
+.video-v-img image {
+  width: 100%;
+  height: 90px;
+  border-radius: 10rpx;
+}
+
+.video-v-img .video-liked {
+  position: absolute;
+  bottom: 10rpx;
+  left: 10rpx;
+  width: 100%;
+  color: #fff;
+}
+
+.liked-count .count {
+  font-size: 13px;
+}
+
+.video-v-title {
+  font-size: 13px;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/* ====================================== */
+.video-h {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.video-h-img {
+  width: 33%;
+  margin-left: 20rpx;
+  position: relative;
+}
+
+.video-h-img image {
+  width: 100%;
+  height: 80px;
+  border-radius: 10rpx;
+}
+
+.video-h-img .seconds{
+  position: absolute;
+  right: 10rpx;
+  bottom: 15rpx;
+  color: #fff;
+  font-size: 12px;
+}
+
+.video-h-info {
+  font-size: 13px;
+  color: gray;
+  width: 60%;
+  margin-left: 15rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.video-h-info .depart{
+  font-size: 13px;
+  color: #000;
+}
+
+.video-h-stat {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.video-h-stat view {
+  margin-right: 5rpx;
+}
+
+.video-h-title {
+  width: 100%;
+  font-size: 15px;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 15rpx;
+}
+
+.video-h-user{
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 5rpx;
+}
+
+/* =================================== */
+
+.user {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.user-img {
+  width: 30%;
+  margin-left: 60rpx;
+}
+
+.user-img image {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+}
+
+.user-info {
+  width: 70%;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.user-info .nickName{
+  margin-bottom: 20rpx;
+  font-size: 18px;
+}
+
+.user-stat {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.user-stat view {
+  margin-right: 5rpx;
+  font-size: 13px;
+  color: gray;
+}

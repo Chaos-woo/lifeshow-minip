@@ -1,0 +1,22 @@
+<!-- components/commentItem/index.wxml -->
+<navigator wx:if="{{type=='normal'}}" open-type="navigate" url="/pages/video-detail/video-detail?video={{commentInfo.videoId}}" class="comment-item">
+  <view class="avatar-item">
+    <image class="avatar" src="{{commentInfo.authorAvatar}}" />
+  </view>
+  <view class="content">
+    <view class="title">我的留言：</view>
+    <view class="text">{{commentInfo.content}}</view>
+  </view>
+  <view class="video-img-item">
+    <image class="video-img" src="{{commentInfo.videoCover}}" />
+  </view>
+</navigator>
+<view wx:if="{{type=='mini'}}" class="mini">
+  <image class="avatar" src="{{commentInfo.authorAvatar}}" />
+  <view class="mini-content">
+    <view class="title">
+      <text class="user" decode='true'>{{commentInfo.author}}&nbsp;:</text>
+    </view>
+    <view class="text">{{commentInfo.content}}</view>
+  </view>
+</view>

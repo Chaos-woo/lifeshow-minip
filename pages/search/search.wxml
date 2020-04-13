@@ -1,0 +1,25 @@
+<!-- pages/search/search.wxml -->
+<navBar id="navbar" title="搜索" color="#FFFFFF" background="#86E3CE" back="{{true}}" bindback="back"></navBar>
+<van-search value="" placeholder="请输入搜索关键词" show-action bind:search="onSearch" bind:cancel="onCancel" id="searchBar" />
+<view class="tabs">
+    <van-tabs active="{{activ}}" swipeable animated bind:scroll="onScroll" style="height:100%">
+        <van-tab title="作品" name="works">
+            <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onWorksScrollToLower">
+                <!-- scroll-view里面的内容 -->
+                <view class="video-container">
+                    <navigatorItem wx:for="{{worksVideoObject.records.length>1}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-h" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                </view>
+                <van-divider wx:if="{{worksVideoObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
+            </scroll-view>
+        </van-tab>
+        <van-tab title="用户" name="user">
+            <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onUserScrollToLower">
+                <!-- scroll-view里面的内容 -->
+                <view class="user-container">
+                    <navigatorItem type="user" wx:for="{{userListObject.records.length>1}}" wx:for-index="index" wx:for-item="item" wx:key="id" class="user-item" userDetail="{{item}}" navigateUrl="/pages/user/user?id={{item.id}}"></navigatorItem>
+                </view>
+                <van-divider wx:if="{{userListObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
+            </scroll-view>
+        </van-tab>
+    </van-tabs>
+</view>

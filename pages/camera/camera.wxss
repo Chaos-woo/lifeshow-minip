@@ -1,0 +1,107 @@
+/* pages/camera/camera.wxss */
+page {
+  width: 100%;
+  height: 100%;
+  /* position: relative; */
+}
+
+.camera {
+  position: relative;
+}
+
+.timer {
+  position: absolute;
+  left: 30rpx;
+  top: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.tips {
+  position: absolute;
+  bottom: 30rpx;
+  left: 240rpx;
+  width: 290rpx;
+  height: 35rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.shooting {
+  position: absolute;
+  bottom: 80rpx;
+  left: 310rpx;
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.switch-device {
+  position: absolute;
+  right: 80rpx;
+  bottom: 100rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.switch-device image {
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  position: relative;
+}
+
+.tool {
+  position: absolute;
+  left: 20rpx;
+  bottom: 130rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background-color: rgba(255,255,255,0.6);
+}
+
+.tool cover-image{
+    width: 100%;
+    height: 100%;
+}
+
+.tool-item{
+    position: absolute;
+    bottom: 220rpx;
+    left: 20rpx;
+    width: 180rpx;
+    height: 180rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20rpx;
+}
+
+.item{
+    width: 100%;
+    height: 89rpx;
+    line-height: 89rpx;
+    text-align: center;
+}
+
+.item-upload{
+    color: #000;
+    border-bottom: 1rpx solid #000;
+}
+
+.item-return{
+    color: rgb(255, 0, 0);
+}
+
+.upload-img{
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.submit.btn{
+  margin-left: 15px;
+}

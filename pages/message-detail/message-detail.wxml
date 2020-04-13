@@ -1,0 +1,10 @@
+<!-- pages/message-detail/message-detail.wxml -->
+<navBar title="消息详情" color="#FFFFFF" background="#86E3CE" back="{{true}}" bindback="back"></navBar>
+<view class="container">
+    <van-panel title="后台系统信息" desc="内容" status="已阅读" use-footer-slot>
+        <view class="content">{{msg.content}}</view>
+        <view slot="footer" class="footer">
+            <view class="date">{{msg.createdAt}}</view>
+        </view>
+    </van-panel>
+</view>

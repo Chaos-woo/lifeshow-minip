@@ -1,0 +1,53 @@
+<!-- pages/capture/capture.wxml -->
+<navBar title="" background="#86E3CE" color="#FFFFFF" id="navbar">
+    <view class='nav-bar-search' slot="center">
+        <view class='nav-bar-search_icon' />
+        <view class='nav-bar-search_input'>
+            <input bindconfirm="onSearch" class="srch-ipt" confirmType="search" placeholder="搜索音乐" type="text" value=""></input>
+        </view>
+    </view>
+</navBar>
+<movable-area style="height:{{moveableAreaHeight}}px;width:750rpx">
+    <view class="audio" id="audio-container">
+        <image src="{{cover}}" mode="scaleToFill" class="music-img"></image>
+        <view class="player">
+            <view class="info">
+                <view class="song-name">{{currentSong}}</view>
+                <view class="song-singer">{{currentSinger}}</view>
+            </view>
+            <c-audio id="c-audio"></c-audio>
+        </view>
+    </view>
+    <view class="container">
+        <view class="gap" id="gap">
+            <text class="gap-txt">音乐排行榜</text>
+            <view class="tip" bindtap="showTips"><i class="iconfont icon-tips"></i></view>
+        </view>
+        <view class="music">
+            <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onScrollToLower">
+                <!-- scroll-view里面的内容 -->
+                <view class="content">
+                    <view class="item" wx:for="{{songList}}" wx:for-item="item" wx:key="id" wx:for-idnex="index">
+                        <view class="index commons">{{index+1}}</view>
+                        <view class="song-info">
+                            <view class="name">{{item.bgmName}}</view>
+                            <view class="singer">{{item.singer}}</view>
+                        </view>
+                        <view class="options commons" bindtap="onPlay" data-mid="{{item.mid}}" data-song="{{item.bgmName}}" data-singer="{{item.singer}}" data-cover="{{item.bgmCover}}" data-songid="{{item.id}}" data-path="{{item.bgmPath}}" data-duration="{{item.bgmSeconds}}">
+                            <i class="iconfont icon-play"></i>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <movable-view style="width: 60px;height: 60px;border-radius:30px;background-color: #fff;z-index: 999;" direction="all" x="15" y="15" damping="10" friction="1" inertia="{{inertia}}" class="movable-view" bindtap="navigateToCamera">
+        <image src="/images/icon/camera-btn.png" mode="widthFix"></image>
+    </movable-view>
+    <van-popup show="{{ tipsPopupShow && tipsIsFirst }}" closeable position="center" custom-style="height: 640rpx;width:560rpx;padding-left:70rpx;padding-right:40rpx;padding-top:110rpx;" z-index="999" close-on-click-overlay="{{false}}" round bind:close="onClose">
+        <view class="title">小提示：</view>
+        <view class="content">
+            <van-steps steps="{{ steps }}" active="{{ 4 }}" direction="vertical" active-color="#ee0a24" />
+        </view>
+    </van-popup>
+</movable-area>

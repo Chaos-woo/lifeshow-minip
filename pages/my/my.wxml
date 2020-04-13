@@ -1,0 +1,79 @@
+<!-- pages/my/my.wxml -->
+<navBar title="我的" background="#86E3CE" color="#FFFFFF" id="navbar"></navBar>
+<view class="container">
+    <view class="user-info-container" id="user-info">
+        <view class="avatar-left">
+            <van-image round fit="cover" width="7rem" height="7rem" src="{{userInfo.avatarUrl}}" />
+        </view>
+        <view class="info-right">
+            <view class="userinfo">
+                <text>{{userInfo.nickName}}</text>
+                <view class="detail">
+                    <view wx:if="{{userInfo.gender==1}}">
+                        <van-tag round color="#02AEF0">♂</van-tag>
+                    </view>
+                    <view wx:elif="{{userInfo.gender==2}}">
+                        <van-tag round color="#EC008B">♀</van-tag>
+                    </view>
+                    <view wx:else="{{userInfo.gender==0}}">
+                        <van-tag round color="#9670AD">未知</van-tag>
+                    </view>
+                    <view wx:if="{{userInfo.country}}">
+                        <van-tag mark type="danger">{{userInfo.country}}</van-tag>
+                    </view>
+                    <view wx:if="{{userInfo.province}}">
+                        <van-tag mark type="warning">{{userInfo.province}}</van-tag>
+                    </view>
+                    <view wx:if="{{userInfo.city}}">
+                        <van-tag mark type="primary">{{userInfo.city}}</van-tag>
+                    </view>
+                </view>
+            </view>
+            <view class="tools">
+                <view class="buttons">
+                    <van-button type="normal" size="small" color="#DCDCDC" open-type='share'>分享主页</van-button>
+                    <van-button type="normal" size="small" color="#DCDCDC" icon="weapp-nav" bindtap="showMoreOptions"></van-button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-divider id="divider" />
+    <view class="user-stat" id="user-stat">
+        <view>
+            获得
+            <text>{{stat.receivedLikedCount}}</text>
+            喜欢,
+        </view>
+        <view>
+            关注
+            <text>{{stat.followersCount}}</text>
+            人,
+        </view>
+        <view>
+            拥有
+            <text>{{stat.fansCount}}</text>
+            粉丝
+        </view>
+    </view>
+    <view class="video-tab">
+        <van-tabs active="{{activ}}" bind:change="onChange" swipeable animated bind:scroll="onScroll" style="height:100%">
+            <van-tab title="作品" name="works" info="{{stat.worksCount}}">
+                <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onWorksScrollToLower">
+                    <!-- scroll-view里面的内容 -->
+                    <view class="video-content">
+                        <navigatorItem wx:for="{{worksVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                    </view>
+                </scroll-view>
+            </van-tab>
+            <van-tab title="收藏" name="collected">
+                <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onCollectedScrollToLower">
+                    <!-- scroll-view里面的内容 -->
+                    <view class="video-content">
+                        <navigatorItem wx:for="{{collectedVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                    </view>
+                </scroll-view>
+            </van-tab>
+        </van-tabs>
+    </view>
+</view>
+<van-action-sheet show="{{ actionSheetShow }}" actions="{{ actions }}" description="更多操作" bind:close="onClose" bind:select="onSelect" />

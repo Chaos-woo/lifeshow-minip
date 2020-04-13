@@ -1,0 +1,70 @@
+/* pages/active/active.wxss */
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1704620_3no7va44q7n.eot?t=1585281404423'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1704620_3no7va44q7n.eot?t=1585281404423#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALMAAsAAAAABlwAAAJ/AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcApogQYBNgIkAwgLBgAEIAWEbQcuG6oFyK4xJjLUvQgBZZrZcZ1XBt+K+wsOAoiHp/3xnTszH+aC3RlEiHLaDcltM9svZZ2hEt7WWuaJhc34Z/kKqKRQ4UH2gHMpje/4KoVGVxPqTt4aDzfT2fMKjGdPxb+9VJzFiXbxRlIutNWX4mRzGC11SRtN1qSq6vSJe6d/An2Q1gPKcS/bg9amLqAuDqRAxxoUWaEE3jB2gUs4TqDRqLbMVrG1C2WFNS4QV7ylQTnnUxSWrBdqa5YW8URBfXqUPjwOvx//rY16kprMmrrj3MKE8S/4Jd+sbjrwCX4Q4OoaZCwHCrGnNrZNTjAupzGWNwn2lRn8UlW+TezVLNhfZ6U3g2EouSepK7vVZILb6mkUWDfqSmK0p/381Oej61Mwf95X/vbfn8xLq478b+tOuDSvD3+glatQns5w8jDbba4xLjyvU4teRk69m/8p0Zy37j6tH96s6IwBqg95zxZkEDz7Mdci1yvg+6uuhp7qQwH9HKB+t7bwe6Q9m4out6ypqNLa9mT0tBWNGlHBrk6fYw0995IK9XpGOOqMpMjqTZOFXY4aTdajVr0NaLTManWTLiwnSgMWXQGEdjdIWi0ha/dIFvYDNXr9o1Z7ZDTaF3jLJrNxEdJEmpCJ+iU6RhQqxy7VKHObrFNf46w85O0Tp04QB91+MbmikHiOGemZNRRRqDgKcAlOI9+PMObIJUO6tkg86vVU3Zu6RhRA1RaMaAQxId0l5DBEQsrvLKqlz28jllM+Dbc01MT3EZZy+kcDXf0e5EoT9mq4l1dSZyxDQihIYZEAWoJBxOeLoLh+kIsYRJc9IhIb6dmtVF9Nd31d8HW7oJFlTGEXZuWcZwIAAAA=') format('woff2'),
+  url('//at.alicdn.com/t/font_1704620_3no7va44q7n.woff?t=1585281404423') format('woff'),
+  url('//at.alicdn.com/t/font_1704620_3no7va44q7n.ttf?t=1585281404423') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_1704620_3no7va44q7n.svg?t=1585281404423#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fire:before {
+  content: "\e600";
+  color:rgb(255, 0, 0)
+}
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.activ-nav{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.activ-nav .index{
+  width: 20%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.activ-nav .name{
+  width: 50%;
+  height: 60rpx;
+  padding-left: 5px;
+  line-height: 60rpx;
+}
+
+.activ-nav .videoCount{
+  width: 30%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color:#FA897B;
+  text-align: center;
+}
+
+
+
+

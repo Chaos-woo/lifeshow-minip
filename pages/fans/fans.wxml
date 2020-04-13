@@ -1,0 +1,16 @@
+<!-- pages/fans/fans.wxml -->
+<navBar title="粉丝列表" background="#86E3CE" back="{{true}}" color="#FFFFFF" bindback="back" id="navbar"></navBar>
+<view class="container">
+    <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onScrollToLower">
+        <van-swipe-cell wx:for="{{userList}}" wx:for-index="index" wx:for-item="item" wx:key="id" left-width="{{90}}" async-close bind:close="onClose" name="{{item.id}}">
+            <!-- 左边显示关注状态 -->
+            <view wx:if="{{item.external.status=='1'}}" slot="left" class="van-swipe-cell-left" style="background-color:#FFDD94">
+                互相关注
+            </view>
+            <view wx:else slot="left" class="van-swipe-cell-left" style="background-color:#07C160">
+                <text>{{item.external.followedDate}}与你连接~</text>
+            </view>
+            <navigatorItem type="user" class="user-item" userDetail="{{item}}" navigateUrl="/pages/user/user?id={{item.id}}"></navigatorItem>
+        </van-swipe-cell>
+    </scroll-view>
+</view>

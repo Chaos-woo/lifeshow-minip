@@ -1,0 +1,32 @@
+<!-- pages/message/message.wxml -->
+<navBar id="navbar" title="消息" color="#FFFFFF" background="#86E3CE"></navBar>
+<view class="tools" id="toolbar">
+    <navigator class="img" url="/pages/fans/fans">
+        <van-icon name="friends-o" color="red" size="80rpx" />
+        <view class="tips">粉丝</view>
+    </navigator>
+    <navigator class="img" url="/pages/comment/comment">
+        <van-icon name="comment-o" color="blue" size="80rpx" />
+        <view class="tips">留言</view>
+    </navigator>
+</view>
+<view id="divider">
+    <van-divider />
+</view>
+<scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true">
+    <!-- scroll-view里面的内容 -->
+    <view class="msgs">
+        <view class="msg-item" wx:for="{{messages}}" wx:for-index="index" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bindtap="toMsgDetail">
+            <view class="avatar">
+                <van-icon name="comment-circle-o" color="#86E3CE" size="50px" />
+            </view>
+            <view class="content">
+                <view class="title">{{item.title}}</view>
+                <view class="text">{{item.content}}</view>
+            </view>
+            <view class="button">
+                <view class="text">查看详情</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

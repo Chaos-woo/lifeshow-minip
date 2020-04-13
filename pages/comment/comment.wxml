@@ -1,0 +1,8 @@
+<!-- pages/comment/comment.wxml -->
+<navBar title="留言列表" background="#86E3CE" back="{{true}}" color="#FFFFFF" bindback="back" id="navbar"></navBar>
+<scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" class="comments">
+    <view class="item" wx:for="{{currentVideoComment.records}}" wx:for-index="index" wx:for-item="item" wx:key="*this" bindscrolltolower="onCommentScrollToLower">
+        <van-divider />
+        <commentItem type="normal" commentInfo="{{item}}"></commentItem>
+    </view>
+</scroll-view>
