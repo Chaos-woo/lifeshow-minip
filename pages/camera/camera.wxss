@@ -35,6 +35,14 @@ page {
   height: 130rpx;
 }
 
+.choose-video{
+  position: absolute;
+  left: 80rpx;
+  bottom: 100rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+
 .switch-device {
   position: absolute;
   right: 80rpx;
@@ -46,6 +54,11 @@ page {
 .switch-device image {
   width: 100%;
   height: 100%;
+}
+
+.bgm-radio{
+  margin-bottom: 10rpx;
+  margin-left: 10rpx;
 }
 
 video {

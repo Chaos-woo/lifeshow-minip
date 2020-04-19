@@ -17,6 +17,7 @@ Page({
     videoSrc: "",
     coverSrc: "",
     bgmId: -1,
+    bgmName:"",
     devicePosition: true,
     canSwitch: true,
     upload: false,
@@ -33,6 +34,14 @@ Page({
     videoDuration: 0,
     toolShow: false,
     statusBarHeight: app.globalData.statusBarHeight,
+    radio: '1',
+    album: false,
+  },
+
+  onRadioChange:function(e){
+    this.setData({
+      radio: e.detail
+    });
   },
 
   back: function () {
@@ -139,26 +148,46 @@ Page({
     await this.uploadVideo(value).then((res) => {
       let json = JSON.parse(res);
       let videoId = json.data;
-      this.uploadCover(videoId).then((res) => {
-        if (res) {
-          wx.hideLoading();
-          wx.showToast({
-            title: "上传完成",
-            icon: "none",
-            duration: 2000,
-          });
-          wx.switchTab({
-            url: "/pages/music/music",
-          });
-        } else {
-          wx.hideLoading();
-          wx.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        }
-      });
+      if (videoId != -1 && this.data.coverSrc == "") {
+        wx.hideLoading();
+        wx.showToast({
+          title: "上传完成",
+          icon: "none",
+          duration: 2000,
+        });
+        wx.switchTab({
+          url: "/pages/music/music",
+        });
+        return;
+      } else if (videoId == -1 && this.data.coverSrc == "") {
+        wx.hideLoading();
+        wx.showToast({
+          title: "上传失败",
+          icon: "none",
+          duration: 2000,
+        });
+      } else {
+        this.uploadCover(videoId).then((res) => {
+          if (res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: "上传完成",
+              icon: "none",
+              duration: 2000,
+            });
+            wx.switchTab({
+              url: "/pages/music/music",
+            });
+          } else {
+            wx.hideLoading();
+            wx.showToast({
+              title: "上传失败",
+              icon: "none",
+              duration: 2000,
+            });
+          }
+        });
+      }
     });
   },
 
@@ -176,7 +205,7 @@ Page({
           videoTitle: value.title,
           videoDesc: value.description,
           createdBy: app.globalData.id,
-          bgmId: this.data.bgmId,
+          bgmId: this.data.radio==1?this.data.bgmId:(-1),
           videoSeconds: this.data.videoDuration * 1000,
           activName: this.data.pickerValue,
         },
@@ -254,6 +283,44 @@ Page({
   onChange(e) {
     this.setData({
       timeData: e.detail,
+    });
+  },
+
+  chooseVideo: function () {
+    wx.chooseVideo({
+      sourceType: ["album"],
+      compressed: true,
+      success: (res) => {
+        if (res.size > 15 * 1024 * 1024) {
+          wx.showModal({
+            content:
+              "请上传压缩后小于15M的视频文件，您当前要上传的文件大小为" +
+              (res.size / (1024 * 1024)).toFixed(2) +
+              "M",
+            showCancel: false,
+          });
+          return;
+        }
+        this.confirmUpload();
+        this.setData({
+          videoSrc: res.tempFilePath,
+          coverSrc: "",
+          upload:true,
+          canSwitch: true,
+          videoDuration: parseInt(res.duration),
+          album: true,
+          radio: '2',
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: "选取视频失败",
+          icon: "none",
+          image: "",
+          duration: 2000,
+          mask: false,
+        });
+      },
     });
   },
 
@@ -335,6 +402,7 @@ Page({
     this.ctx = wx.createCameraContext();
     this.setData({
       bgmId: options.songId,
+      bgmName:options.songName,
       remainTime: options.duration * 1000,
     });
     wx.hideShareMenu();

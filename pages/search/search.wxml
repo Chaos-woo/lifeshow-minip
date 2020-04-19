@@ -7,7 +7,7 @@
             <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onWorksScrollToLower">
                 <!-- scroll-view里面的内容 -->
                 <view class="video-container">
-                    <navigatorItem wx:for="{{worksVideoObject.records.length>1}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-h" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                    <navigatorItem wx:if="{{worksVideoObject.records.length>0}}" wx:for="{{worksVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-h" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
                 </view>
                 <van-divider wx:if="{{worksVideoObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
             </scroll-view>
@@ -16,7 +16,7 @@
             <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onUserScrollToLower">
                 <!-- scroll-view里面的内容 -->
                 <view class="user-container">
-                    <navigatorItem type="user" wx:for="{{userListObject.records.length>1}}" wx:for-index="index" wx:for-item="item" wx:key="id" class="user-item" userDetail="{{item}}" navigateUrl="/pages/user/user?id={{item.id}}"></navigatorItem>
+                    <navigatorItem type="user" wx:if="{{userListObject.records.length>0}}" wx:for="{{userListObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" class="user-item" userDetail="{{item}}" navigateUrl="/pages/user/user?id={{item.id}}"></navigatorItem>
                 </view>
                 <van-divider wx:if="{{userListObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
             </scroll-view>

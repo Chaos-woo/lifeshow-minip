@@ -10,5 +10,6 @@
     "video-tool":"/components/videoTools/index",
     "van-popup": "/@vant/weapp/popup/index",
     "commentItem":"/components/commentItem/index"
-  }
+  },
+  "disableScroll": true
 }

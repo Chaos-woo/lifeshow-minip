@@ -12,7 +12,9 @@
     "van-field": "/@vant/weapp/field/index",
     "van-uploader": "/@vant/weapp/uploader/index",
     "van-cell-group": "/@vant/weapp/cell-group/index",
-    "van-popup": "/@vant/weapp/popup/index"
+    "van-popup": "/@vant/weapp/popup/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index"
   },
   "disableScroll": true
 }

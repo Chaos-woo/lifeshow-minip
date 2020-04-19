@@ -44,7 +44,7 @@ Page({
     id: -1,
     videoList: [],
     videoListBackup: [],
-    curVideoInfo: {videoId:-1},
+    curVideoInfo: { videoId: -1 },
     currentVideoComment: {},
     hasChanged: 0,
     dmData: [],
@@ -111,7 +111,6 @@ Page({
         hasChanged: 0,
       });
     }
-    
   },
 
   // 视频播放出错时触发, e.detail={activeId}
@@ -467,15 +466,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { //todo 进入后无法获取id
+  onLoad: function (options) {
+    //todo 进入后无法获取id
     if (app.globalData.identity == "1") {
       checkSession()
         .then(() => {
-          this.processingUserInfo();
-          this.getRandVideoSet();
           this.setData({
             id: app.globalData.id,
           });
+          let _this = this;
+          setTimeout(function () {
+            _this.processingUserInfo();
+            _this.getRandVideoSet();
+          }, 1000);
         })
         .catch(() => {
           // session过期，需要重新登录

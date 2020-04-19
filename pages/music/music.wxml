@@ -44,7 +44,7 @@
     <movable-view style="width: 60px;height: 60px;border-radius:30px;background-color: #fff;z-index: 999;" direction="all" x="15" y="15" damping="10" friction="1" inertia="{{inertia}}" class="movable-view" bindtap="navigateToCamera">
         <image src="/images/icon/camera-btn.png" mode="widthFix"></image>
     </movable-view>
-    <van-popup show="{{ tipsPopupShow && tipsIsFirst }}" closeable position="center" custom-style="height: 640rpx;width:560rpx;padding-left:70rpx;padding-right:40rpx;padding-top:110rpx;" z-index="999" close-on-click-overlay="{{false}}" round bind:close="onClose">
+    <van-popup show="{{ tipsPopupShow && tipsIsFirst }}" closeable position="center" custom-style="height: 760rpx;width:560rpx;padding-left:70rpx;padding-right:40rpx;padding-top:110rpx;" z-index="999" close-on-click-overlay="{{false}}" round bind:close="onClose">
         <view class="title">小提示：</view>
         <view class="content">
             <van-steps steps="{{ steps }}" active="{{ 4 }}" direction="vertical" active-color="#ee0a24" />

@@ -18,7 +18,7 @@
   <navigator open-type="{{openType}}" url="{{navigateUrl}}" class="video-h">
     <view class="video-h-img">
       <image src="{{videoDetail.cover}}" mode="aspectFill"></image>
-      <view class="seconds">00:15</view>
+      <view class="seconds"></view>
     </view>
     <view class="video-h-info">
       <view class="video-h-title">{{videoDetail.title}}</view>

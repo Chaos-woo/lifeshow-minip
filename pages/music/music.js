@@ -45,6 +45,9 @@ Page({
       {
         text: "上传短视频完成",
       },
+      {
+        text: "注意：目前非拍摄视频无法添加背景音乐",
+      },
     ],
   },
 
@@ -75,12 +78,13 @@ Page({
       });
     } else {
       this.player.pauseMusic();
+      let _data = this.data;
       wx.navigateTo({
         url:
           "/pages/camera/camera?songId=" +
-          this.data.currentSongId +
+          _data.currentSongId +
           "&duration=" +
-          parseInt(this.data.songDuration / 1000),
+          parseInt(_data.songDuration / 1000) + "&songName=" + _data.currentSong,
       });
     }
   },

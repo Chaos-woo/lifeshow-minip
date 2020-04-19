@@ -8,6 +8,9 @@
     <cover-view class="switch-device" wx:if="{{canSwitch}}" bindtap="switchDevicePosition">
         <cover-image src="/images/icon/switch.png"></cover-image>
     </cover-view>
+    <cover-view class="choose-video" wx:if="{{canSwitch}}" bindtap="chooseVideo">
+        <cover-image src="/images/icon/choose_video.png"></cover-image>
+    </cover-view>
     <cover-view wx:if="{{!videoSrc}}" class="timer">还可以拍摄{{ timeData.seconds }}秒</cover-view>
 </camera>
 <video wx:if="{{videoSrc && !upload}}" src="{{videoSrc}}" style="width: 750rpx; height: {{windowHeight}}px;" controls>
@@ -26,6 +29,11 @@
             <van-field value="" label="标题" cursor-spacing="10" maxlength="20" adjust-position clickable name="title" />
             <van-field value="{{pickerValue}}" label="热门活动" name="activ" readonly clickable bindtap="onPicker" />
             <van-field value="" label="描述" cursor-spacing="10" adjust-position type="textarea" maxlength="40" clickable autosize=" { maxHeight: 100, minHeight: 50 }" name="description" />
+            <van-field value="自选短视频暂不支持合成背景音乐" wx:if="{{album}}" label="当前音乐" disabled name="none" border="{{false}}" readonly />
+            <van-radio-group wx:if="{{!album}}" value="{{ radio }}" bind:change="onRadioChange" >
+                <van-radio name="1" custom-class="bgm-radio">需要</van-radio>
+                <van-radio name="2" custom-class="bgm-radio">不需要</van-radio>
+            </van-radio-group>
             <van-field value="" label="封面图" name="none" border="{{false}}" readonly />
         </van-cell-group>
         <van-uploader file-list="{{ coverList }}" bind:after-read="afterRead" bind:delete="onDeleteCover" max-count="1" upload-text="点击上传封面图（默认使用短视频封面图）" accept="image" max-size="4194304" class="upload-img" name="cover" />

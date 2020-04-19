@@ -12,8 +12,8 @@ Page({
   data: {
     activ: "",
     curKeyword: "",
-    worksVideoObject: {records:[]},
-    userListObject: {records:[]},
+    worksVideoObject: {},
+    userListObject: {},
     // 页面总高度
     windowHeight: app.globalData.windowHeight,
     // scroll-view的高度
@@ -30,8 +30,8 @@ Page({
     this.setData({
       curKeyword: e.detail,
     });
-    this.getWorks(1);
-    this.getUsers(1);
+    this.getWorks(1, false);
+    this.getUsers(1, false);
   },
 
   onCancel(e) {
@@ -41,7 +41,7 @@ Page({
   },
 
   // 获取搜索作品
-  getWorks: function (pages) {
+  getWorks: function (pages, type) {
     pGetSearchWorks({
       url: "/u/video/search",
       data: {
@@ -50,14 +50,20 @@ Page({
       },
     }).then((res) => {
       if (res.success) {
-        let _curWorks = this.data.worksVideoObject;
-        let _newWorks = res.data;
-        _curWorks.records = _curWorks.records.concat(_newWorks.records);
-        _curWorks.current = _newWorks.current;
-        _curWorks.pages = _newWorks.pages;
-        this.setData({
-          worksVideoObject: _curWorks,
-        });
+        if (type) {
+          let _curWorks = this.data.worksVideoObject;
+          let _newWorks = res.data;
+          _curWorks.records = _curWorks.records.concat(_newWorks.records);
+          _curWorks.current = _newWorks.current;
+          _curWorks.pages = _newWorks.pages;
+          this.setData({
+            worksVideoObject: _curWorks,
+          });
+        } else {
+          this.setData({
+            worksVideoObject: res.data,
+          });
+        }
       }
     });
   },
@@ -66,11 +72,11 @@ Page({
   onWorksScrollToLower: function () {
     let obj = this.data.worksVideoObject;
     if (obj.current != obj.pages) {
-      this.getWorks(obj.current + 1);
+      this.getWorks(obj.current + 1, true);
     }
   },
 
-  getUsers: function (pages) {
+  getUsers: function (pages, type) {
     pGetSearchUsers({
       url: "/u/user/search",
       data: {
@@ -79,14 +85,20 @@ Page({
       },
     }).then((res) => {
       if (res.success) {
-        let _curUser = this.data.userListObject;
-        let _newUser = res.data;
-        _curUser.records = _curUser.records.concat(_newUser.records);
-        _curUser.current = _newUser.current;
-        _curUser.pages = _newUser.pages;
-        this.setData({
-          userListObject: _curUser,
-        });
+        if (type) {
+          let _curUser = this.data.userListObject;
+          let _newUser = res.data;
+          _curUser.records = _curUser.records.concat(_newUser.records);
+          _curUser.current = _newUser.current;
+          _curUser.pages = _newUser.pages;
+          this.setData({
+            userListObject: _curUser,
+          });
+        } else {
+          this.setData({
+            userListObject: res.data,
+          });
+        }
       }
     });
   },
@@ -94,7 +106,7 @@ Page({
   onUserScrollToLower: function () {
     let obj = this.data.userListObject;
     if (obj.current != obj.pages) {
-      this.getUsers(obj.current + 1);
+      this.getUsers(obj.current + 1, true);
     }
   },
 

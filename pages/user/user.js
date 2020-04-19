@@ -224,6 +224,16 @@ Page({
       id: app.globalData.id,
       otherId: options.id
     });
+
+    let _data = this.data;
+    setTimeout(function () {
+      if(_data.id == _data.otherId){
+        wx.switchTab({
+          url: '/pages/my/my'
+        });
+      }
+    }, 1000);
+
     let query = wx.createSelectorQuery().in(this);
     query.select("#navbar").boundingClientRect();
     query.select("#user-info").boundingClientRect();

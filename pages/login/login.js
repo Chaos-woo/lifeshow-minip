@@ -27,16 +27,20 @@ Page({
                 getUserId({
                   url: "/u/user/id",
                   data: { auth: app.globalData.auth },
-                }).then((res) => {
-                  if (res.success) {
-                    app.globalData.id = res.data.id;
-                    wx.switchTab({
-                      url: "/pages/index/index",
-                    });
-                  }
-                }).catch(err=>{
-                  console.log("id err");
-                });
+                })
+                  .then((res) => {
+                    if (res.success) {
+                      app.globalData.id = res.data.id;
+                      setTimeout(function () {
+                        wx.switchTab({
+                          url: "/pages/index/index",
+                        });
+                      }, 1000);
+                    }
+                  })
+                  .catch((err) => {
+                    console.log("id err");
+                  });
               })
               .catch((err) => {
                 wx.switchTab({
@@ -44,7 +48,7 @@ Page({
                 });
               });
           }
-        }else{
+        } else {
           wx.showToast({
             title: "同意才能使用微信注册噢~",
             icon: "none",
