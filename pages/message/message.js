@@ -29,7 +29,6 @@ Page({
         break;
       }
     }
-    console.log("ooo=>"+stringMsg);
     
     wx.navigateTo({
       url: '/pages/message-detail/message-detail?item='+stringMsg,

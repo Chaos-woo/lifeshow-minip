@@ -175,7 +175,7 @@ Page({
       id: app.globalData.id
     });
 
-    if (app.globalData.identity != "0") {
+
       wx.getSystemInfo({
         success: res => {
           this.setData({
@@ -212,9 +212,7 @@ Page({
           scrollViewHeight: scrollViewHeight
         });
       });
-    } else {
-      app.navigateToLogin();
-    }
+
     wx.hideShareMenu();
   },
 

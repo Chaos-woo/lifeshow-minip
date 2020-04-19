@@ -3,7 +3,7 @@
     <view class='nav-bar-search' slot="center">
         <view class='nav-bar-search_icon' />
         <view class='nav-bar-search_input'>
-            <input bindconfirm="onSearch" class="srch-ipt" confirmType="search" placeholder="搜索音乐" type="text" value=""></input>
+            <input bindconfirm="onSearch" class="srch-ipt" confirmType="search" placeholder="搜索更多作为背景音乐吧~" type="text" value=""></input>
         </view>
     </view>
 </navBar>

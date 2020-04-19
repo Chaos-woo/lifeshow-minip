@@ -1,4 +1,5 @@
-const localServerUrl = "http://127.0.0.1:8080";
+// const localServerUrl = "http://127.0.0.1:8080";
+const localServerUrl = "https://showlife.fun";
 
 const isObjectValueEqual = function (a, b) {   
     //取对象a和b的属性名

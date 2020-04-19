@@ -1,6 +1,6 @@
 <!-- pages/active/active.wxml -->
 <navBar id="navbar" title="热门活动" color="#FFFFFF" background="#86E3CE"></navBar>
-<van-search value="" placeholder="请输入活动关键词" bind:search="onSearch" bind:cancel="onCancel" show-action	action-text="清空" id="searchBar" />
+<van-search value="" placeholder="搜索活动标签可观看更多~" bind:search="onSearch" bind:cancel="onCancel" show-action	action-text="清空" id="searchBar" />
 <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" class="scroll-panel" bindscrolltolower="onScrollToLower">
   <!-- scroll-view里面的内容 -->
   <navigator class="activ-nav" url="/pages/video-set/video-set?activ={{item.id}}" wx:for="{{activList}}" wx:for-index="index" wx:for-item="item" wx:key="id">

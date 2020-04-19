@@ -12,83 +12,84 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logoSrc: "/images/logo_vs_slogan.png"
+    logoSrc: "/images/logo_vs_slogan.png",
   },
 
-  getUserInfoAuth: function(e) {
-    if (e.detail.userInfo) {
-      let identity = app.globalData.identity;
-      if (identity == "1") {
-        checkUserPasswordCache({ key: "auth" })
-          .then(res => {
-            app.globalData.auth = res.data;
-            getUserId({
-              url: "/u/user/id",
-              data: { auth: app.globalData.auth }
-            }).then(res => {
-              if (res.success) {
-                app.globalData.id = res.data.id;
-                wx.switchTab({
-                  url: "/pages/index/index"
+  getUserInfoAuth: function (e) {
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting["scope.userInfo"]) {
+          let identity = app.globalData.identity;
+          if (identity == "1") {
+            checkUserPasswordCache({ key: "auth" })
+              .then((res) => {
+                app.globalData.auth = res.data;
+                getUserId({
+                  url: "/u/user/id",
+                  data: { auth: app.globalData.auth },
+                }).then((res) => {
+                  if (res.success) {
+                    app.globalData.id = res.data.id;
+                    wx.switchTab({
+                      url: "/pages/index/index",
+                    });
+                  }
+                }).catch(err=>{
+                  console.log("id err");
                 });
-              }
-            });
-          })
-          .catch(err => {
-            wx.switchTab({
-              url: "/pages/index/index"
-            });
+              })
+              .catch((err) => {
+                wx.switchTab({
+                  url: "/pages/index/index",
+                });
+              });
+          }
+        }else{
+          wx.showToast({
+            title: "同意才能使用微信注册噢~",
+            icon: "none",
+            duration: 2000,
+            mask: false,
           });
-      }
-    } else {
-      wx.showToast({
-        title: "同意才能使用微信注册噢~",
-        icon: "none",
-        duration: 2000,
-        mask: false
-      });
-    }
+        }
+      },
+    });
   },
 
-  setUserIdentity: function(e) {
+  setUserIdentity: function (e) {
     // 设置用户身份和请求获取用户信息的权限
     let identity = e.currentTarget.dataset.identity;
     setUserIdentityCache({
       key: "identity",
-      data: identity
-    }).then(res => {
+      data: identity,
+    }).then((res) => {
       app.globalData.identity = identity;
-      if (identity == "0") {
-        wx.switchTab({
-          url: "/pages/index/index"
-        });
-      }
     });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     if (app.globalData.userInfo) {
       let identity = app.globalData.identity;
       if (identity == "1") {
         checkUserPasswordCache({ key: "auth" })
-          .then(res => {
+          .then((res) => {
             app.globalData.auth = res.data;
             getUserId({
               url: "/u/user/id",
-              data: { auth: app.globalData.auth }
-            }).then(res => {
+              data: { auth: app.globalData.auth },
+            }).then((res) => {
               if (res.success) {
                 app.globalData.id = res.data.id;
                 wx.switchTab({
-                  url: "/pages/index/index"
+                  url: "/pages/index/index",
                 });
               }
             });
           })
-          .catch(err => {
+          .catch((err) => {
             // 没有登录口令缓存
             console.log("password cache : " + err);
           });
@@ -100,21 +101,21 @@ Page({
         let identity = app.globalData.identity;
         if (identity == "1") {
           checkUserPasswordCache({ key: "auth" })
-            .then(res => {   
+            .then((res) => {
               app.globalData.auth = res.data;
               getUserId({
                 url: "/u/user/id",
-                data: { auth: app.globalData.auth }
-              }).then(res => {
+                data: { auth: app.globalData.auth },
+              }).then((res) => {
                 if (res.success) {
                   app.globalData.id = res.data.id;
                   wx.switchTab({
-                    url: "/pages/index/index"
+                    url: "/pages/index/index",
                   });
                 }
               });
             })
-            .catch(err => {
+            .catch((err) => {
               // 没有登录口令缓存
               console.log("password cache : " + err);
             });
@@ -129,35 +130,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function () {},
 });

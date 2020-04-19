@@ -467,12 +467,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options) { //todo 进入后无法获取id
     if (app.globalData.identity == "1") {
       checkSession()
         .then(() => {
           this.processingUserInfo();
           this.getRandVideoSet();
+          this.setData({
+            id: app.globalData.id,
+          });
         })
         .catch(() => {
           // session过期，需要重新登录
@@ -516,9 +519,6 @@ Page({
           scrollViewHeight: res.windowHeight * 0.65 - 90,
         });
       },
-    });
-    this.setData({
-      id: app.globalData.id,
     });
   },
 

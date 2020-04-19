@@ -2,12 +2,10 @@
 const app = getApp();
 const promise = require("../../utils/promise.js");
 const networkp = require("../../utils/networkp.js");
-const utils = require("../../utils/util.js");
 
 const setCameraTips = promise(wx.setStorage);
 const getCameraTips = promise(wx.getStorage);
 const pGetSongInfo = networkp.get;
-const pGetSongSrc = networkp.get;
 
 Page({
   /**
