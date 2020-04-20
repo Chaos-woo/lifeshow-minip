@@ -21,7 +21,7 @@
 
 #尽可能地实现了大部分功能
 
-#相较于【[需求量化.xlsx]([https://github.com/chaooWoo/lifeshow-minip/blob/master/document/%E9%9C%80%E6%B1%82%E9%87%8F%E5%8C%96.xlsx](https://github.com/chaooWoo/lifeshow-minip/blob/master/document/需求量化.xlsx))】新增功能包括：
+#相较于【[需求量化.xlsx](https://github.com/chaooWoo/lifeshow-minip/blob/master/document/需求量化.xlsx)】新增功能包括：
 
 1. 用户可选择手机中已有的短视频进行上传（非小程序中录制的视频）
 
@@ -35,7 +35,7 @@
 
 ### 如何使用？
 
-1. 引入组件（如果你是新手，可能遇到这个问题[没有找到可以构建的npm包]([微信小程序 npm 找不到npm包 没有找到可以构建的npm包 如何使用第三方npm组件](https://www.cnblogs.com/alchemist-z/p/12274557.html))，也可参照 **FAQ** 中我的归纳的步骤）
+1. 引入组件（如果你是新手，可能遇到这个问题[没有找到可以构建的npm包](https://www.cnblogs.com/alchemist-z/p/12274557.html)，也可参照 **FAQ** 中我的归纳的步骤）
 
 可参照[Vant Weapp](https://youzan.github.io/vant-weapp/#/quickstart)的快速开始方法通过npm安装其小组件；同样的，微信的扩展组件也如法炮制地安装（[以video-swiper为例](https://developers.weixin.qq.com/miniprogram/dev/extended/component-plus/)）。
 
@@ -109,7 +109,7 @@
 
 
 
-**#项目中中大量使用了Promise简化了回调，若是不能理解，可以参照以下文章了解Promise（或者去搜索其他文章）**
+**#项目中大量使用了Promise简化了回调，若是不能理解，可以参照以下文章了解Promise（或者去搜索其他文章）**
 
 1. 项目中【util】包中对网络get、post请求作promise封装，使用更加简单，可以用于理解promise
 2. [ 微信小程序中使用Promise进行异步流程处理](https://www.jianshu.com/p/e92c7495da76 )
@@ -143,7 +143,7 @@ const regeneratorRuntime = require("../../libs/runtime");
 ### 其他：
 
 1. 我的代码风格和分包习惯不是很好，代码可能看起来有点混乱，后续可能会计划添加相应注释（原来有了部分注释）
-2. 小程序审核上线需要各种资质，个人主体使用【视频服务】也很难通过小程序审核，鼓止步于体验版
+2. 小程序审核上线需要各种资质，个人主体使用【视频服务】也很难通过小程序审核，故止步于体验版
 
  
 
