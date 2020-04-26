@@ -99,9 +99,9 @@
 **#微信小程序 npm 找不到npm包 没有找到可以构建的npm包 如何使用第三方npm组件**
 
 1. 勾选【使用npm模块】
-2. 若是初次使用，需要 **初始化npm**，在项目根目录（pages文件夹的父目录），使用 ==**npm init -f**== 初始化
-3. 继续使用 ==**npm install -production docxtemplater**== 构建npm项目的配置文件
-4. 根据需要的第三方组件要求，执行对应的npm命令，例如：==**npm i @miniprogram-component-plus/video-swiper --save**==
+2. 若是初次使用，需要 **初始化npm**，在项目根目录（pages文件夹的父目录），使用 **npm init -f** 初始化
+3. 继续使用 **npm install -production docxtemplater** 构建npm项目的配置文件
+4. 根据需要的第三方组件要求，执行对应的npm命令，例如：**npm i @miniprogram-component-plus/video-swiper --save**
 5. 在微信开发者工具中，【工具】-【构建npm】，等待一点时间后即可完成引入
 6. 第二次之后的第三方组件引入，只需要 **4. 5.** 两步即可
 
