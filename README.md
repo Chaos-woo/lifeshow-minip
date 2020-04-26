@@ -13,7 +13,7 @@
 
 ### 小程序部分功能预览：
 
-待上传...
+<img src="https://raw.githubusercontent.com/chaooWoo/lifeshow-minip/master/document/images/index.jpg" alt="首页" style="zoom:50%;" /><img src="https://raw.githubusercontent.com/chaooWoo/lifeshow-minip/master/document/images/my.jpg" alt="个人信息" style="zoom:50%;" />
 
 
 
