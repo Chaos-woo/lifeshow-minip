@@ -24,6 +24,7 @@ const login = promise(wx.login);
 const checkSession = promise(wx.checkSession);
 const setUserInfoCache = promise(wx.setStorage);
 const setUserPasswordCache = promise(wx.setStorage);
+const removePasswordCache = promise(wx.removeStorage);
 const getUserInfo = promise(wx.getUserInfo);
 const getUserInfoCache = promise(wx.getStorage);
 const pCode2Session = networkp.post;
@@ -446,18 +447,29 @@ Page({
               });
           });
         } else {
-          let identity = app.globalData.identity;
-          if (identity == "1") {
-            wx.reLaunch({
-              url: "/pages/login/login",
+          removePasswordCache({ key: "auth" })
+            .then(() => {
+              wx.reLaunch({
+                url: "/pages/login/login",
+              });
+              wx.showToast({
+                title: "希望使用您的用户信息~请同意~",
+                icon: "none",
+                duration: 2000,
+                mask: false,
+              });
+            })
+            .catch((err) => {
+              wx.reLaunch({
+                url: "/pages/login/login",
+              });
+              wx.showToast({
+                title: "希望使用您的用户信息~请同意~",
+                icon: "none",
+                duration: 2000,
+                mask: false,
+              });
             });
-            wx.showToast({
-              title: "希望使用您的用户信息~请同意~",
-              icon: "none",
-              duration: 2000,
-              mask: false,
-            });
-          }
         }
       },
     });
@@ -467,10 +479,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //todo 进入后无法获取id
-    if (app.globalData.identity == "1") {
-      checkSession()
-        .then(() => {
+    checkSession()
+      .then(() => {
+        if(app.globalData.id != (-1)){
           this.setData({
             id: app.globalData.id,
           });
@@ -478,44 +489,59 @@ Page({
           setTimeout(function () {
             _this.processingUserInfo();
             _this.getRandVideoSet();
-          }, 1000);
-        })
-        .catch(() => {
-          // session过期，需要重新登录
-          login()
-            .then((res) => {
-              let code = res.code;
-              pCode2Session({
-                url: "/u/user/code2session",
-                data: { code: code },
-              })
-                .then((res) => {
-                  // 获取登录口令
-                  if (res.success) {
-                    let data = res.data;
-                    app.globalData.id = data.id;
-                    this.setData({
-                      id: data.id,
-                    });
-                    // 设置本地登录口令
-                    setUserPasswordCache({
-                      key: "auth",
-                      data: data.password,
-                    });
-                    app.globalData.auth = data.password;
-                    this.processingUserInfo();
-                    this.getRandVideoSet();
-                  }
-                })
-                .catch((err) => {
-                  console.log("code 2 session err:" + err);
-                });
-            })
-            .catch((err) => {
-              console.log(err);
+          }, 500);
+        }else{
+          wx.clearStorageSync();
+          setTimeout(function () {
+            wx.reLaunch({
+              url: "/pages/login/login",
             });
-        });
-    }
+          }, 500);
+          wx.showToast({
+            title: "登录发生错误，请重新登录~",
+            icon: "none",
+            duration: 2000,
+            mask: false,
+          });
+        }
+      })
+      .catch(() => {
+        // session过期，需要重新登录
+        login()
+          .then((res) => {
+            let code = res.code;
+            pCode2Session({
+              url: "/u/user/code2session",
+              data: { code: code },
+            })
+              .then((res) => {
+                // 获取登录口令
+                if (res.success) {
+                  let data = res.data;
+                  this.setData({
+                    id: data.id,
+                  });
+                  app.globalData.id = data.id;
+                  // 设置本地登录口令
+                  setUserPasswordCache({
+                    key: "auth",
+                    data: data.password,
+                  });
+                  app.globalData.auth = data.password;
+                  setTimeout(function () {
+                    _this.processingUserInfo();
+                    _this.getRandVideoSet();
+                  }, 500);
+                }
+              })
+              .catch((err) => {
+                console.log("code 2 session err:" + err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
     wx.getSystemInfo({
       success: (res) => {
         this.setData({

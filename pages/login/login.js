@@ -5,6 +5,7 @@ const networkp = require("../../utils/networkp.js");
 
 const setUserIdentityCache = promise(wx.setStorage);
 const checkUserPasswordCache = promise(wx.getStorage);
+const removePasswordCache = promise(wx.removeStorage);
 const getUserId = networkp.get;
 
 Page({
@@ -35,17 +36,32 @@ Page({
                         wx.switchTab({
                           url: "/pages/index/index",
                         });
-                      }, 1000);
+                      }, 500);
                     }
                   })
                   .catch((err) => {
                     console.log("id err");
+                    wx.removeStorage({
+                      key: "auth",
+                    });
                   });
               })
               .catch((err) => {
-                wx.switchTab({
-                  url: "/pages/index/index",
-                });
+                removePasswordCache({ key: "auth" })
+                  .then(() => {
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: "/pages/index/index",
+                      });
+                    }, 500);
+                  })
+                  .catch((err) => {
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: "/pages/index/index",
+                      });
+                    }, 500);
+                  });
               });
           }
         } else {
@@ -87,8 +103,20 @@ Page({
             }).then((res) => {
               if (res.success) {
                 app.globalData.id = res.data.id;
-                wx.switchTab({
-                  url: "/pages/index/index",
+                setTimeout(function () {
+                  wx.switchTab({
+                    url: "/pages/index/index",
+                  });
+                }, 500);
+              } else {
+                wx.removeStorage({
+                  key: "auth",
+                });
+                wx.showToast({
+                  title: "当前登录口令过期，请重新登录~",
+                  icon: "none",
+                  duration: 2000,
+                  mask: false,
                 });
               }
             });
@@ -98,7 +126,7 @@ Page({
             console.log("password cache : " + err);
           });
       } else {
-        // 用户身份为0：游客，什么都不做
+        // 用户身份为0：什么都不做
       }
     } else {
       app.appReadyCallback = () => {
@@ -113,9 +141,11 @@ Page({
               }).then((res) => {
                 if (res.success) {
                   app.globalData.id = res.data.id;
-                  wx.switchTab({
-                    url: "/pages/index/index",
-                  });
+                  setTimeout(function () {
+                    wx.switchTab({
+                      url: "/pages/index/index",
+                    });
+                  }, 500);
                 }
               });
             })
@@ -124,7 +154,7 @@ Page({
               console.log("password cache : " + err);
             });
         } else {
-          // 用户身份为0：游客，什么都不做
+          // 用户身份为0：什么都不做
         }
       };
     }

@@ -291,7 +291,7 @@ Page({
       sourceType: ["album"],
       compressed: true,
       success: (res) => {
-        if (res.size > 15 * 1024 * 1024) {
+        if (res.size > 10 * 1024 * 1024) {
           wx.showModal({
             content:
               "请上传压缩后小于15M的视频文件，您当前要上传的文件大小为" +
