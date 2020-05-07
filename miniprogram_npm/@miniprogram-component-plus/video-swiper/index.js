@@ -1,4 +1,4 @@
-module.exports = /******/ (function(modules) {
+module.exports = /******/ (function (modules) {
   // webpackBootstrap
   /******/ // The module cache
   /******/ var installedModules = {}; // The require function
@@ -13,7 +13,7 @@ module.exports = /******/ (function(modules) {
     /******/ /******/ var module = (installedModules[moduleId] = {
       /******/ i: moduleId,
       /******/ l: false,
-      /******/ exports: {}
+      /******/ exports: {},
       /******/
     }); // Execute the module function
     /******/
@@ -35,21 +35,21 @@ module.exports = /******/ (function(modules) {
   /******/
   /******/ /******/ __webpack_require__.c = installedModules; // define getter function for harmony exports
   /******/
-  /******/ /******/ __webpack_require__.d = function(exports, name, getter) {
+  /******/ /******/ __webpack_require__.d = function (exports, name, getter) {
     /******/ if (!__webpack_require__.o(exports, name)) {
       /******/ Object.defineProperty(exports, name, {
         enumerable: true,
-        get: getter
+        get: getter,
       });
       /******/
     }
     /******/
   }; // define __esModule on exports
   /******/
-  /******/ /******/ __webpack_require__.r = function(exports) {
+  /******/ /******/ __webpack_require__.r = function (exports) {
     /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
       /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-        value: "Module"
+        value: "Module",
       });
       /******/
     }
@@ -57,7 +57,7 @@ module.exports = /******/ (function(modules) {
     /******/
   }; // create a fake namespace object // mode & 1: value is a module id, require it // mode & 2: merge all properties of value into the ns // mode & 4: return value when already ns object // mode & 8|1: behave like require
   /******/
-  /******/ /******/ /******/ /******/ /******/ /******/ __webpack_require__.t = function(
+  /******/ /******/ /******/ /******/ /******/ /******/ __webpack_require__.t = function (
     value,
     mode
   ) {
@@ -74,14 +74,14 @@ module.exports = /******/ (function(modules) {
     /******/ __webpack_require__.r(ns);
     /******/ Object.defineProperty(ns, "default", {
       enumerable: true,
-      value: value
+      value: value,
     });
     /******/ if (mode & 2 && typeof value != "string")
       for (var key in value)
         __webpack_require__.d(
           ns,
           key,
-          function(key) {
+          function (key) {
             return value[key];
           }.bind(null, key)
         );
@@ -89,7 +89,7 @@ module.exports = /******/ (function(modules) {
     /******/
   }; // getDefaultExport function for compatibility with non-harmony modules
   /******/
-  /******/ /******/ __webpack_require__.n = function(module) {
+  /******/ /******/ __webpack_require__.n = function (module) {
     /******/ var getter =
       module && module.__esModule
         ? /******/ function getDefault() {
@@ -103,7 +103,7 @@ module.exports = /******/ (function(modules) {
     /******/
   }; // Object.prototype.hasOwnProperty.call
   /******/
-  /******/ /******/ __webpack_require__.o = function(object, property) {
+  /******/ /******/ __webpack_require__.o = function (object, property) {
     return Object.prototype.hasOwnProperty.call(object, property);
   }; // __webpack_public_path__
   /******/
@@ -116,26 +116,26 @@ module.exports = /******/ (function(modules) {
   /************************************************************************/
   /******/ [
     /* 0 */
-    /***/ function(module, exports, __webpack_require__) {
+    /***/ function (module, exports, __webpack_require__) {
       "use strict";
 
       Component({
         options: {
           addGlobalClass: true,
-          pureDataPattern: /^_/
+          pureDataPattern: /^_/,
         },
         properties: {
           duration: {
             type: Number,
-            value: 500
+            value: 500,
           },
           easingFunction: {
             type: String,
-            value: "default"
+            value: "default",
           },
           loop: {
             type: Boolean,
-            value: true
+            value: true,
           },
           videoList: {
             type: Array,
@@ -147,8 +147,8 @@ module.exports = /******/ (function(modules) {
                   : [];
 
               this._videoListChanged(newVal);
-            }
-          }
+            },
+          },
         },
         data: {
           nextQueue: [],
@@ -159,31 +159,31 @@ module.exports = /******/ (function(modules) {
           _change: -1,
           _invalidUp: 0,
           _invalidDown: 0,
-          _videoContexts: []
+          _videoContexts: [],
         },
         lifetimes: {
           attached: function attached() {
             this.data._videoContexts = [
               wx.createVideoContext("video_0", this),
               wx.createVideoContext("video_1", this),
-              wx.createVideoContext("video_2", this)
+              wx.createVideoContext("video_2", this),
             ];
-          }
+          },
         },
         methods: {
           _videoListChanged: function _videoListChanged(newVal) {
             var _this = this;
 
             var data = this.data;
-            newVal.forEach(function(item) {
+            newVal.forEach(function (item) {
               data.nextQueue.push(item);
             });
             if (data.curQueue.length === 0) {
               this.setData(
                 {
-                  curQueue: data.nextQueue.splice(0, 3)
+                  curQueue: data.nextQueue.splice(0, 3),
                 },
-                function() {
+                function () {
                   _this.playCurrent(1);
                 }
               );
@@ -247,21 +247,21 @@ module.exports = /******/ (function(modules) {
             }
             this.setData({
               curQueue: curQueue,
-              circular: circular
+              circular: circular,
             });
           },
           playCurrent: function playCurrent(current) {
-            this.data._videoContexts.forEach(function(ctx, index) {
+            this.data._videoContexts.forEach(function (ctx, index) {
               index !== current ? ctx.pause() : ctx.play();
             });
           },
           // custom operation
-          externalPlayOrPauseCurrent: function(type,current) {
-            this.data._videoContexts.forEach(function(ctx, index) {
-              if(index == current && type == "play"){
+          externalPlayOrPauseCurrent: function (type, current) {
+            this.data._videoContexts.forEach(function (ctx, index) {
+              if (index == current && type == "play") {
                 ctx.play();
-              }else if(index == current && type == "pause"){
-                  ctx.pause();
+              } else if (index == current && type == "pause") {
+                ctx.pause();
               }
             });
           },
@@ -297,22 +297,22 @@ module.exports = /******/ (function(modules) {
 
             var detail = e.detail;
             var activeId = e.target.dataset.id;
-            
+
             this.triggerEvent(
               type,
               Object.assign(
                 Object.assign(Object.assign({}, detail), {
-                  activeId: activeId
+                  activeId: activeId,
                 }),
                 ext
               )
             );
-          }
-        }
+          },
+        },
       });
 
       /***/
-    }
+    },
     /******/
   ]
 );

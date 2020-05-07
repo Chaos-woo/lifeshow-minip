@@ -3,7 +3,6 @@ const app = getApp();
 const promise = require("../../utils/promise.js");
 const networkp = require("../../utils/networkp.js");
 
-const setUserIdentityCache = promise(wx.setStorage);
 const checkUserPasswordCache = promise(wx.getStorage);
 const removePasswordCache = promise(wx.removeStorage);
 const getUserId = networkp.get;
@@ -20,55 +19,58 @@ Page({
     wx.getSetting({
       success(res) {
         if (res.authSetting["scope.userInfo"]) {
-          let identity = app.globalData.identity;
-          if (identity == "1") {
-            checkUserPasswordCache({ key: "auth" })
-              .then((res) => {
-                app.globalData.auth = res.data;
-                getUserId({
-                  url: "/u/user/id",
-                  data: { auth: app.globalData.auth },
-                })
-                  .then((res) => {
-                    if (res.success) {
-                      app.globalData.id = res.data.id;
-                      setTimeout(function () {
-                        wx.switchTab({
-                          url: "/pages/index/index",
-                        });
-                      }, 500);
-                    }
-                  })
-                  .catch((err) => {
-                    console.log("id err");
+          checkUserPasswordCache({ key: "auth" })
+            .then((res) => {
+              app.globalData.auth = res.data;
+              getUserId({
+                url: "/u/user/id",
+                data: { auth: res.data },
+              })
+                .then((res) => {
+                  if (res.success) {
+                    app.globalData.id = res.data.id;
+
+                    setTimeout(function () {
+                      wx.switchTab({
+                        url: "/pages/index/index",
+                      });
+                    }, 10);
+                  }else{
+                    wx.showToast({
+                      title: '登录失败，请重新登录~',
+                      icon: 'none',
+                      image: '',
+                      duration: 2000,
+                      mask: false
+                    });
                     wx.removeStorage({
                       key: "auth",
                     });
+                  }
+                })
+                .catch((err) => {
+                  app.globalData.id = -1;
+                  wx.removeStorage({
+                    key: "auth",
                   });
-              })
-              .catch((err) => {
-                removePasswordCache({ key: "auth" })
-                  .then(() => {
-                    setTimeout(function () {
-                      wx.switchTab({
-                        url: "/pages/index/index",
-                      });
-                    }, 500);
-                  })
-                  .catch((err) => {
-                    setTimeout(function () {
-                      wx.switchTab({
-                        url: "/pages/index/index",
-                      });
-                    }, 500);
+                  wx.showToast({
+                    title: "登录出错，请重新登录~",
+                    icon: "none",
+                    duration: 3000,
+                    mask: false,
                   });
+                });
+            })
+            .catch((err) => {
+              wx.switchTab({
+                url: "/pages/index/index",
               });
-          }
+            });
         } else {
           wx.showToast({
             title: "同意才能使用微信注册噢~",
             icon: "none",
-            duration: 2000,
+            duration: 3000,
             mask: false,
           });
         }
@@ -76,89 +78,26 @@ Page({
     });
   },
 
-  setUserIdentity: function (e) {
-    // 设置用户身份和请求获取用户信息的权限
-    let identity = e.currentTarget.dataset.identity;
-    setUserIdentityCache({
-      key: "identity",
-      data: identity,
-    }).then((res) => {
-      app.globalData.identity = identity;
-    });
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      let identity = app.globalData.identity;
-      if (identity == "1") {
-        checkUserPasswordCache({ key: "auth" })
-          .then((res) => {
-            app.globalData.auth = res.data;
-            getUserId({
-              url: "/u/user/id",
-              data: { auth: app.globalData.auth },
-            }).then((res) => {
-              if (res.success) {
-                app.globalData.id = res.data.id;
-                setTimeout(function () {
-                  wx.switchTab({
-                    url: "/pages/index/index",
-                  });
-                }, 500);
-              } else {
-                wx.removeStorage({
-                  key: "auth",
-                });
-                wx.showToast({
-                  title: "当前登录口令过期，请重新登录~",
-                  icon: "none",
-                  duration: 2000,
-                  mask: false,
-                });
-              }
-            });
-          })
-          .catch((err) => {
-            // 没有登录口令缓存
-            console.log("password cache : " + err);
-          });
-      } else {
-        // 用户身份为0：什么都不做
-      }
+    wx.hideShareMenu();
+    if (app.globalData.id != -1) {
+      setTimeout(function () {
+        wx.switchTab({
+          url: "/pages/index/index",
+        });
+      }, 100);
     } else {
       app.appReadyCallback = () => {
-        let identity = app.globalData.identity;
-        if (identity == "1") {
-          checkUserPasswordCache({ key: "auth" })
-            .then((res) => {
-              app.globalData.auth = res.data;
-              getUserId({
-                url: "/u/user/id",
-                data: { auth: app.globalData.auth },
-              }).then((res) => {
-                if (res.success) {
-                  app.globalData.id = res.data.id;
-                  setTimeout(function () {
-                    wx.switchTab({
-                      url: "/pages/index/index",
-                    });
-                  }, 500);
-                }
-              });
-            })
-            .catch((err) => {
-              // 没有登录口令缓存
-              console.log("password cache : " + err);
-            });
-        } else {
-          // 用户身份为0：什么都不做
-        }
+        setTimeout(function () {
+          wx.switchTab({
+            url: "/pages/index/index",
+          });
+        }, 100);
       };
     }
-    wx.hideShareMenu();
   },
 
   /**

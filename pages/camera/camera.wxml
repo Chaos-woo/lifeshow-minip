@@ -13,7 +13,7 @@
     </cover-view>
     <cover-view wx:if="{{!videoSrc}}" class="timer">还可以拍摄{{ timeData.seconds }}秒</cover-view>
 </camera>
-<video wx:if="{{videoSrc && !upload}}" src="{{videoSrc}}" style="width: 750rpx; height: {{windowHeight}}px;" controls>
+<video wx:if="{{videoSrc && !upload}}" object-fit="cover" src="{{videoSrc}}" style="width: 750rpx; height: {{windowHeight}}px;" controls>
     <cover-view class="tool" bindtap="showTools">
         <cover-image src="/images/icon/tool.png"></cover-image>
     </cover-view>

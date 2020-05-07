@@ -9,7 +9,7 @@
                 <view class="video-container">
                     <navigatorItem wx:if="{{worksVideoObject.records.length>0}}" wx:for="{{worksVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-h" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
                 </view>
-                <van-divider wx:if="{{worksVideoObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
+                <van-divider wx:if="{{!worksVideoObject.records || worksVideoObject.records.length==0}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
             </scroll-view>
         </van-tab>
         <van-tab title="用户" name="user">
@@ -18,7 +18,7 @@
                 <view class="user-container">
                     <navigatorItem type="user" wx:if="{{userListObject.records.length>0}}" wx:for="{{userListObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" class="user-item" userDetail="{{item}}" navigateUrl="/pages/user/user?id={{item.id}}"></navigatorItem>
                 </view>
-                <van-divider wx:if="{{userListObject.records.length<1}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
+                <van-divider wx:if="{{!userListObject.records || userListObject.records.length==0}}" contentPosition="center" textColor="#808080">当前没有搜索内容</van-divider>
             </scroll-view>
         </van-tab>
     </van-tabs>

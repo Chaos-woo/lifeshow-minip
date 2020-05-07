@@ -62,16 +62,18 @@
                 <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onWorksScrollToLower">
                     <!-- scroll-view里面的内容 -->
                     <view class="video-content">
-                        <navigatorItem wx:for="{{worksVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                        <navigatorItem wx:if="{{worksVideoObject.records.length>0}}" wx:for="{{worksVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
                     </view>
+                    <van-divider wx:if="{{!worksVideoObject.records || worksVideoObject.records.length==0}}" contentPosition="center" textColor="#808080">还没有作品哟~</van-divider>
                 </scroll-view>
             </van-tab>
             <van-tab title="收藏" name="collected">
                 <scroll-view style="height: {{scrollViewHeight}}px" scroll-y="true" bindscrolltolower="onCollectedScrollToLower">
                     <!-- scroll-view里面的内容 -->
                     <view class="video-content">
-                        <navigatorItem wx:for="{{likedVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
+                        <navigatorItem wx:if="{{collectedVideoObject.records.length>0}}" wx:for="{{collectedVideoObject.records}}" wx:for-index="index" wx:for-item="item" wx:key="id" type="video-v" class="video-item" videoDetail="{{item}}" navigateUrl="/pages/video-detail/video-detail?video={{item.id}}"></navigatorItem>
                     </view>
+                    <van-divider wx:if="{{!collectedVideoObject.records || collectedVideoObject.records.length==0}}" contentPosition="center" textColor="#808080">当前没有收藏作品~</van-divider>
                 </scroll-view>
             </van-tab>
         </van-tabs>

@@ -10,7 +10,6 @@
   
   .iconfont {
     font-family: "iconfont" !important;
-    font-size: 16px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -47,7 +46,7 @@
   }
   .audioControls .bottom i{
     color: #000000;
-    font-size: 25px;
+    font-size: 30px;
   }
   .audioControls .slider{
     width: 520rpx;

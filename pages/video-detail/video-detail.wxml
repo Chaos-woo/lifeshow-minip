@@ -15,7 +15,7 @@
 <view class="tools">
     <video-tool bind:comment="onComment" bind:toUserInfo="onClickUserAvatar" videoInfo="{{curVideoInfo}}" bind:liked="onLiked"></video-tool>
 </view>
-<video loop="{{true}}" autoplay="{{true}}" enable-play-gesture enable-progress-gesture show-center-play-btn="{{false}}" controls="{{false}}" src="{{curVideoInfo.videoSrc}}" data-id="{{curVideoInfo.videoId}}" object-fit="cover'" bindplay="onPlay" bindpause="onPause" bindended="onEnded" binderror="onError" bindloadedmetadata="onLoadedmetadata"></video>
+<video loop="{{true}}" autoplay="{{true}}" enable-play-gesture enable-progress-gesture show-center-play-btn="{{false}}" controls="{{false}}" src="{{curVideoInfo.videoSrc}}" data-id="{{curVideoInfo.videoId}}" object-fit="contain'" bindplay="onPlay" bindpause="onPause" bindended="onEnded" binderror="onError" bindloadedmetadata="onLoadedmetadata"></video>
 <image class="cd" src="/images/icon/cd.png" bindtap="moreOptions"></image>
 <view class="damaku">
     <view class="damaku-input">

@@ -14,6 +14,7 @@ Page({
   data: {
     cameraHeight: 0,
     navbarHeight: 0,
+    windowHeight: 0,
     videoSrc: "",
     coverSrc: "",
     bgmId: -1,
@@ -25,7 +26,6 @@ Page({
     pickerValue: "",
     coverList: [],
     pickerShow: false,
-    windowHeight: app.globalData.windowHeight,
     shootImgSrc: "/images/icon/shooting_start.png",
     tips: "点击开始拍摄q['o ']P",
     shootingStatus: false,
@@ -33,7 +33,6 @@ Page({
     timeData: { seconds: 0 },
     videoDuration: 0,
     toolShow: false,
-    statusBarHeight: app.globalData.statusBarHeight,
     radio: '1',
     album: false,
   },
@@ -356,9 +355,14 @@ Page({
       shootImgSrc: "/images/icon/shooting_start.png",
       shootingStatus: !_data.shootingStatus,
     });
+    wx.showLoading({
+      title: '正在处理...',
+      mask: true,
+    });
     this.ctx.stopRecord({
       compressed: true,
       success: (res) => {
+        wx.hideLoading();
         this.setData({
           videoSrc: res.tempVideoPath,
           coverSrc: res.tempThumbPath,
@@ -369,6 +373,7 @@ Page({
         });
       },
       fail() {
+        wx.hideLoading();
         wx.showToast({
           title: "拍摄失败",
           icon: "none",
@@ -398,7 +403,30 @@ Page({
         }
       },
     });
-    this.setCameraHeight();
+    // this.setCameraHeight();
+    let query = wx.createSelectorQuery().in(this);
+    query.select("#navbar").boundingClientRect();
+
+    query.exec((res) => {
+      wx.getSystemInfo({
+        success: res => {
+          this.setData({
+            windowHeight: res.windowHeight
+          })
+        }
+      });
+
+      // 取出navbar的高度
+      let navbarHeight = res[0].height;
+
+      let cameraHeight = this.data.windowHeight - navbarHeight;
+
+      // 算出来之后存到data对象里面
+      this.setData({
+        cameraHeight: cameraHeight,
+        navbarHeight: navbarHeight,
+      });
+    });
     this.ctx = wx.createCameraContext();
     this.setData({
       bgmId: options.songId,

@@ -19,7 +19,7 @@
         controls="{{false}}"
         src="{{item.url}}" 
         data-id="{{item.id}}"
-        object-fit="{{item.objectFit || 'cover'}}"
+        object-fit="{{'contain'}}"
         data-index="{{index}}"
         bindplay="onPlay"
         bindpause="onPause"

@@ -15,7 +15,7 @@ Page({
     worksVideoObject: {},
     userListObject: {},
     // 页面总高度
-    windowHeight: app.globalData.windowHeight,
+    windowHeight: 0,
     // scroll-view的高度
     scrollViewHeight: 0,
   },
@@ -114,6 +114,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          windowHeight: res.windowHeight
+        })
+      }
+    });
+
     let query = wx.createSelectorQuery().in(this);
     query.select("#navbar").boundingClientRect();
     query.select("#searchBar").boundingClientRect();
@@ -155,7 +163,12 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () {
+    this.setData({
+      worksVideoObject: {},
+      userListObject: {},
+    });
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

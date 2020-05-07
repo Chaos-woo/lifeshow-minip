@@ -23,7 +23,6 @@ const checkUserInfoIsEqually = function (options) {
 const login = promise(wx.login);
 const checkSession = promise(wx.checkSession);
 const setUserInfoCache = promise(wx.setStorage);
-const setUserPasswordCache = promise(wx.setStorage);
 const removePasswordCache = promise(wx.removeStorage);
 const getUserInfo = promise(wx.getUserInfo);
 const getUserInfoCache = promise(wx.getStorage);
@@ -106,7 +105,7 @@ Page({
     this.setData({
       hasChanged: _data.hasChanged + 1,
     });
-    if (_data.hasChanged == 5) {
+    if (_data.hasChanged == 7) {
       this.getRandVideoSet();
       this.setData({
         hasChanged: 0,
@@ -414,6 +413,44 @@ Page({
     });
   },
 
+  toLogin: function () {
+    removePasswordCache({ key: "auth" })
+      .then(() => {
+        app.globalData.id = -1;
+        wx.showToast({
+          title: '登录出错，请重新登录~',
+          icon: 'none',
+          image: '',
+          duration: 2000,
+          mask: true,
+          success: (result)=>{
+            setTimeout(function() {
+              wx.reLaunch({
+                url: "/pages/login/login",
+              });
+            }, 2000);
+          },
+        });
+      })
+      .catch((err) => {
+        app.globalData.id = -1;
+        wx.showToast({
+          title: '登录出错，请重新登录~',
+          icon: 'none',
+          image: '',
+          duration: 2000,
+          mask: true,
+          success: (result)=>{
+            setTimeout(function() {
+              wx.reLaunch({
+                url: "/pages/login/login",
+              });
+            }, 2000);
+          },
+        });
+      });
+  },
+
   // 处理用户信息
   processingUserInfo: function () {
     wx.getSetting({
@@ -447,29 +484,7 @@ Page({
               });
           });
         } else {
-          removePasswordCache({ key: "auth" })
-            .then(() => {
-              wx.reLaunch({
-                url: "/pages/login/login",
-              });
-              wx.showToast({
-                title: "希望使用您的用户信息~请同意~",
-                icon: "none",
-                duration: 2000,
-                mask: false,
-              });
-            })
-            .catch((err) => {
-              wx.reLaunch({
-                url: "/pages/login/login",
-              });
-              wx.showToast({
-                title: "希望使用您的用户信息~请同意~",
-                icon: "none",
-                duration: 2000,
-                mask: false,
-              });
-            });
+          this.toLogin();
         }
       },
     });
@@ -481,7 +496,7 @@ Page({
   onLoad: function (options) {
     checkSession()
       .then(() => {
-        if(app.globalData.id != (-1)){
+        if (app.globalData.id != -1) {
           this.setData({
             id: app.globalData.id,
           });
@@ -489,19 +504,44 @@ Page({
           setTimeout(function () {
             _this.processingUserInfo();
             _this.getRandVideoSet();
-          }, 500);
-        }else{
-          wx.clearStorageSync();
-          setTimeout(function () {
-            wx.reLaunch({
-              url: "/pages/login/login",
-            });
-          }, 500);
-          wx.showToast({
-            title: "登录发生错误，请重新登录~",
-            icon: "none",
-            duration: 2000,
-            mask: false,
+          }, 1);
+        } else {
+          // 防止缓存失效且用户session在有效期内无法登录的情况
+          login()
+          .then((res) => {
+            let code = res.code;
+            pCode2Session({
+              url: "/u/user/code2session",
+              data: { code: code },
+            })
+              .then((res) => {
+                // 获取登录口令
+                if (res.success) {
+                  let data = res.data;
+                  this.setData({
+                    id: data.id,
+                  });
+                  app.globalData.id = data.id;
+                  // 设置本地登录口令
+                  wx.setStorage({
+                    key: "auth",
+                    data: data.password,
+                  });
+                  let _this = this;
+                  setTimeout(function () {
+                    _this.processingUserInfo();
+                    _this.getRandVideoSet();
+                  }, 50);
+                }else{
+                  this.toLogin();
+                }
+              })
+              .catch((err) => {
+                this.toLogin();
+              });
+          })
+          .catch((err) => {
+            this.toLogin();
           });
         }
       })
@@ -523,23 +563,25 @@ Page({
                   });
                   app.globalData.id = data.id;
                   // 设置本地登录口令
-                  setUserPasswordCache({
+                  wx.setStorage({
                     key: "auth",
                     data: data.password,
                   });
-                  app.globalData.auth = data.password;
+                  let _this = this;
                   setTimeout(function () {
                     _this.processingUserInfo();
                     _this.getRandVideoSet();
-                  }, 500);
+                  }, 50);
+                }else{
+                  this.toLogin();
                 }
               })
               .catch((err) => {
-                console.log("code 2 session err:" + err);
+                this.toLogin();
               });
           })
           .catch((err) => {
-            console.log(err);
+            this.toLogin();
           });
       });
     wx.getSystemInfo({

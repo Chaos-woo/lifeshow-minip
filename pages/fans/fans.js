@@ -14,7 +14,7 @@ Page({
     current: -1,
     total: -1,
     // 页面总高度
-    windowHeight: app.globalData.windowHeight,
+    windowHeight: 0,
     // scroll-view的高度
     scrollViewHeight: 0
   },
@@ -71,6 +71,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          windowHeight: res.windowHeight
+        })
+      }
+    });
+
     let query = wx.createSelectorQuery().in(this);
     query.select("#navbar").boundingClientRect();
 

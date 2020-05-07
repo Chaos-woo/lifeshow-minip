@@ -12,7 +12,9 @@
   </view>
 </navigator>
 <view wx:if="{{type=='mini'}}" class="mini">
-  <image class="avatar" src="{{commentInfo.authorAvatar}}" />
+  <navigator url="/pages/user/user?id={{commentInfo.authorId}}" open-type="navigate">
+      <image class="avatar" src="{{commentInfo.authorAvatar}}" />
+  </navigator>
   <view class="mini-content">
     <view class="title">
       <text class="user" decode='true'>{{commentInfo.author}}&nbsp;:</text>

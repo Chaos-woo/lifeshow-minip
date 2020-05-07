@@ -5,10 +5,12 @@
     <image src="{{logoSrc}}"></image>
   </view>
   <view class="buttons">
-    <van-button round type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfoAuth" data-identity="1" bindtap="setUserIdentity">微信一键登录</van-button>
-    <view class="tex">
+    <van-button round type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfoAuth">
+      微信一键登录
+    </van-button>
+    <!-- <view class="tex">
       <text decode='true'>使用微信登录才能使用更多功能噢 &gt;.&lt;</text>
-    </view>
+    </view> -->
   </view>
   <view class="footer">
     <text>Copyright © 2020 Design by w.chao</text>
