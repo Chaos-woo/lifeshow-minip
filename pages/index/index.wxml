@@ -1,23 +1,17 @@
 <view class="search-btn" bindtap="toSearchPage" style="position:absolute;left:30rpx;top:{{statusBarHeight+10}}px">
     <image class="search-img" src="/images/icon/search.png"></image>
 </view>
-<view class="list-btn" style="position:absolute;left:285rpx;top:{{statusBarHeight+10}}px">
-    <view class="random" style="font-weight:bold;" bindtap="leftAnimation">推荐</view>
-    <view class="follow" style="font-weight:normal;" bindtap="rightAnimation">关注</view>
-</view>
-<view class="line" animation="{{lineAni}}" style="position:absolute;left:285rpx;top:{{statusBarHeight+25}}px">
-    <image class="line-img" src="/images/icon/line.png"></image>
-</view>
+<view class="random" style="z-index: 998;position:absolute;left:110rpx;top:{{statusBarHeight+10}}px;height:50rpx;width:400rpx;color:#cdcdcd">随意看，看生活</view>
 <view class="danmaku" style="position:absolute;left:0;top:{{statusBarHeight+20}}px">
     <view class='displayGroup'>
-    <view class='dmGroup' wx:for="{{ dmData }}" wx:key="id" style="top:{{ item.top }}%; animation: dmAnimation {{item.time}}s linear {{ index*3 }}s infinite;">
-        <view class='dmItem'>
-            <view class='dm'>
-                <text class='content'>{{ item.content }}</text>
+        <view class='dmGroup' wx:for="{{ dmData }}" wx:key="id" style="top:{{ item.top }}%; animation: dmAnimation {{item.time}}s linear {{ index*3 }}s infinite;">
+            <view class='dmItem'>
+                <view class='dm'>
+                    <text class='content'>{{ item.content }}</text>
+                </view>
             </view>
         </view>
     </view>
-</view>
 </view>
 <view class="tools">
     <video-tool bind:comment="onComment" bind:toUserInfo="onClickUserAvatar" videoInfo="{{curVideoInfo}}" bind:liked="onLiked"></video-tool>

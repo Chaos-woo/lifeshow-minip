@@ -17,6 +17,7 @@ Page({
     id: -1,
     current: -1,
     total: -1,
+    // 0:关注列表 1:黑名单
     type: -1,
     // 页面总高度
     windowHeight: 0,

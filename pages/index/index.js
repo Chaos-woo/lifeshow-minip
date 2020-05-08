@@ -48,11 +48,8 @@ Page({
     currentVideoComment: {},
     hasChanged: 0,
     dmData: [],
-    lineAni: "",
-    lineSite: "left",
     commentInputValue: "",
     danmakuInputValue: "",
-    lineShiftDistance: wx.getSystemInfoSync().windowWidth / 750,
     statusBarHeight: app.globalData.statusBarHeight,
     popShow: false,
     moreOptionsShow: false,
@@ -76,7 +73,8 @@ Page({
         }
       }
     }
-  }, // 弹幕错位问题 todo
+    this.setDM(this.data.curVideoInfo.external.danmaku, false);
+  },
 
   // 暂停播放时触发, e.detail={activeId}
   onPause(e) {
@@ -100,7 +98,6 @@ Page({
         }
       }
     }
-    this.setDM(this.data.curVideoInfo.external.danmaku, false);
     let _data = this.data;
     this.setData({
       hasChanged: _data.hasChanged + 1,
@@ -111,6 +108,7 @@ Page({
         hasChanged: 0,
       });
     }
+    this.setDM(this.data.curVideoInfo.external.danmaku, false);
   },
 
   // 视频播放出错时触发, e.detail={activeId}
@@ -321,43 +319,6 @@ Page({
     wx.navigateTo({
       url: "/pages/search/search",
     });
-  },
-
-  // 横线左移动画
-  leftAnimation: function () {
-    if (this.data.lineSite == "right") {
-      let animation = wx.createAnimation({
-        duration: 500,
-        timingFunction: "ease",
-        delay: 0,
-      });
-      animation.translateX(0).step();
-      this.setData({
-        lineAni: animation.export(),
-        lineSite: "left",
-        attention: false,
-      });
-      this.getRandVideoSet();
-    }
-  },
-
-  // 横线右移动画
-  rightAnimation: function () {
-    if (this.data.lineSite == "left") {
-      let animation = wx.createAnimation({
-        duration: 500,
-        timingFunction: "ease",
-        delay: 0,
-      });
-      let distance = this.data.lineShiftDistance * 110;
-      animation.translateX(distance).step();
-      this.setData({
-        lineAni: animation.export(),
-        lineSite: "right",
-        attention: true,
-      });
-      this.getRandVideoSet();
-    }
   },
 
   // 获取推荐视频
